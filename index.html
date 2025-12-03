@@ -201,12 +201,17 @@
       color: #888;
     }
 
-    .lead-snippet .highlight {
+    .lead-snippet .highlight-topic {
       background: #3b4f2a;
       color: #9ece6a;
       padding: 1px 4px;
       border-radius: 3px;
       font-weight: 500;
+    }
+
+    .lead-snippet .highlight-role {
+      color: #fff;
+      font-weight: 600;
     }
 
     .lead-topics {
@@ -398,19 +403,37 @@
       return div.innerHTML;
     }
 
-    function highlightKeywords(text, keywords) {
-      if (!text || !keywords || keywords.length === 0) {
-        return escapeHtml(text || '');
+    // Search keywords to highlight
+    const SEARCH_ROLES = [
+      "Head", "Lead", "Principal", "Director", "VP", "Chief",
+      "Staff", "Senior", "Architect", "Manager"
+    ];
+
+    const SEARCH_TOPICS = [
+      "Agentic AI", "AI Agents", "Autonomous Agents", "Multi-Agent",
+      "LLM Orchestration", "AI Automation", "Agent Framework"
+    ];
+
+    function highlightKeywords(text) {
+      if (!text) {
+        return '';
       }
 
       // Escape text first
       let result = escapeHtml(text);
 
-      // Create regex pattern for all keywords (case insensitive)
-      keywords.forEach(keyword => {
+      // Highlight topics first (they're longer, avoids partial matches)
+      SEARCH_TOPICS.forEach(keyword => {
         const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`(${escapedKeyword})`, 'gi');
-        result = result.replace(regex, '<span class="highlight">$1</span>');
+        result = result.replace(regex, '<span class="highlight-topic">$1</span>');
+      });
+
+      // Highlight roles (use word boundaries to avoid partial matches)
+      SEARCH_ROLES.forEach(keyword => {
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`\\b(${escapedKeyword})\\b`, 'gi');
+        result = result.replace(regex, '<span class="highlight-role">$1</span>');
       });
 
       return result;
@@ -430,7 +453,7 @@
       const matchedTopics = lead.matchedTopics || [];
 
       const snippetHtml = lead.snippet
-        ? `<div class="lead-snippet">${highlightKeywords(lead.snippet, matchedTopics)}</div>`
+        ? `<div class="lead-snippet">${highlightKeywords(lead.snippet)}</div>`
         : '';
 
       const topicsHtml = matchedTopics.length > 0
