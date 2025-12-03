@@ -245,6 +245,11 @@
       color: #a78bfa;
     }
 
+    .badge.topic-badge {
+      background: rgba(0, 212, 255, 0.2);
+      color: #00d4ff;
+    }
+
     .snippet {
       color: #aaa;
       font-size: 0.9rem;
@@ -504,6 +509,7 @@
           <div class="lead-meta">
             <span class="badge ${lead.confidence}">${lead.confidence} confidence</span>
             <span class="badge company-badge">${escapeHtml(lead.company)}</span>
+            ${(lead.matchedTopics || []).map(topic => `<span class="badge topic-badge">${escapeHtml(topic)}</span>`).join('')}
           </div>
           ${snippetHtml ? `<div class="snippet">${snippetHtml}</div>` : ''}
           <div class="lead-actions">

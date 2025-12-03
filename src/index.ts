@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { search, buildQuery, delay } from './google-search.js';
-import { parseSearchResults } from './parser.js';
+import { parseSearchResults, ParseOptions } from './parser.js';
 import { Lead, CompaniesConfig, SearchConfig, QueryBatch } from './types.js';
 
 // Configuration
@@ -78,14 +78,15 @@ async function main() {
   console.log('');
 
   // Generate queries for each company
+  // Strategy: Focus on topic keywords, not generic roles
   const queries: QueryBatch[] = [];
+  const allTopics = keywordsData.topics;
 
   for (const company of companies) {
-    // Query variant 1: Company + broad topics (Agentic AI, AI Agents)
+    // Query variant 1: Company + core agentic topics
     const q1 = buildQuery({
       company: company.name,
-      roles: keywordsData.roles.slice(0, 5), // Head, Lead, Principal, Director, VP
-      topics: keywordsData.topics.slice(0, 2), // Agentic AI, AI Agents
+      topics: allTopics.slice(0, 3), // Agentic AI, AI Agents, Autonomous Agents
       exclusions: keywordsData.exclusions,
     });
 
@@ -93,11 +94,10 @@ async function main() {
       queries.push({ query: q1, company: company.name });
     }
 
-    // Query variant 2: Company + different topics (Autonomous Agents, Multi-Agent)
+    // Query variant 2: Company + additional topics
     const q2 = buildQuery({
       company: company.name,
-      roles: keywordsData.roles.slice(0, 3), // Head, Lead, Principal
-      topics: keywordsData.topics.slice(2, 4), // Autonomous Agents, Multi-Agent
+      topics: allTopics.slice(3), // Multi-Agent, LLM Orchestration, AI Automation, Agent Framework
       exclusions: keywordsData.exclusions,
     });
 
@@ -135,9 +135,16 @@ async function main() {
 
       console.log(`  - Got ${items.length} results from Google`);
 
-      const leads = parseSearchResults(items, query);
+      // Parse with post-filtering: require at least one topic keyword match
+      const parseOptions: ParseOptions = {
+        queryUsed: query,
+        topics: allTopics,
+        requireTopicMatch: true, // Only keep leads that mention Agentic AI topics
+      };
+      const leads = parseSearchResults(items, parseOptions);
       let newCount = 0;
       let duplicateCount = 0;
+      let filteredCount = items.length - leads.length;
 
       for (const lead of leads) {
         if (!existingUrls.has(lead.linkedinUrl)) {
@@ -150,7 +157,7 @@ async function main() {
       }
 
       console.log(
-        `  - Parsed ${leads.length} leads: ${newCount} new, ${duplicateCount} duplicates`
+        `  - Parsed ${leads.length} leads (${filteredCount} filtered out): ${newCount} new, ${duplicateCount} duplicates`
       );
 
       // Mark query as executed (even if no results)

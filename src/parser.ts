@@ -24,11 +24,20 @@ function extractImageUrl(item: GoogleSearchItem): string | null {
 }
 
 /**
+ * Find which topic keywords appear in the text (case-insensitive)
+ */
+function findMatchedTopics(text: string, topics: string[]): string[] {
+  const lowerText = text.toLowerCase();
+  return topics.filter((topic) => lowerText.includes(topic.toLowerCase()));
+}
+
+/**
  * Parse a single Google search result into a Lead
  */
 export function parseSearchResult(
   item: GoogleSearchItem,
-  queryUsed: string
+  queryUsed: string,
+  topics: string[] = []
 ): Lead | null {
   const { title, link, snippet, htmlSnippet } = item;
 
@@ -39,6 +48,10 @@ export function parseSearchResult(
 
   // Extract image URL from pagemap
   const imageUrl = extractImageUrl(item);
+
+  // Find which topics match in title + snippet (combined search)
+  const searchText = `${title} ${snippet || ''}`;
+  const matchedTopics = findMatchedTopics(searchText, topics);
 
   // Try primary pattern first: "Name - Role - Company | LinkedIn"
   let match = title.match(PRIMARY_PATTERN);
@@ -57,6 +70,7 @@ export function parseSearchResult(
       htmlSnippet: htmlSnippet || snippet || '',
       imageUrl,
       confidence: detectTruncation(title) ? 'low' : 'high',
+      matchedTopics,
       queryUsed,
       discoveredAt: new Date().toISOString(),
     };
@@ -77,6 +91,7 @@ export function parseSearchResult(
       htmlSnippet: htmlSnippet || snippet || '',
       imageUrl,
       confidence: 'medium',
+      matchedTopics,
       queryUsed,
       discoveredAt: new Date().toISOString(),
     };
@@ -87,17 +102,32 @@ export function parseSearchResult(
 }
 
 /**
+ * Options for parsing search results
+ */
+export interface ParseOptions {
+  queryUsed: string;
+  topics?: string[]; // Topic keywords for filtering
+  requireTopicMatch?: boolean; // If true, only return leads with at least one topic match
+}
+
+/**
  * Parse all results from a Google search response
+ * With optional post-filtering to require topic keyword matches
  */
 export function parseSearchResults(
   items: GoogleSearchItem[],
-  queryUsed: string
+  options: ParseOptions
 ): Lead[] {
+  const { queryUsed, topics = [], requireTopicMatch = false } = options;
   const leads: Lead[] = [];
 
   for (const item of items) {
-    const lead = parseSearchResult(item, queryUsed);
+    const lead = parseSearchResult(item, queryUsed, topics);
     if (lead) {
+      // If filtering is enabled, only include leads that match at least one topic
+      if (requireTopicMatch && lead.matchedTopics.length === 0) {
+        continue; // Skip - no topic keywords found
+      }
       leads.push(lead);
     }
   }

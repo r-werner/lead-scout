@@ -8,6 +8,7 @@ export interface Lead {
   htmlSnippet: string; // Snippet with <b> highlighted keywords
   imageUrl: string | null; // Profile picture URL from Google
   confidence: 'high' | 'medium' | 'low';
+  matchedTopics: string[]; // Which topic keywords were found in snippet/title
   queryUsed: string;
   discoveredAt: string; // ISO date string
 }

@@ -34,33 +34,31 @@ export async function search(
 
 /**
  * Build an X-Ray search query for LinkedIn
+ *
+ * Strategy: Topics are PRIMARY (required), company is secondary context.
+ * Generic roles like "Lead", "Senior" are too common and add noise.
  */
 export function buildQuery(options: {
   company?: string;
-  roles?: string[];
   topics?: string[];
   exclusions?: string[];
 }): string {
   const parts: string[] = ['site:linkedin.com/in'];
 
-  // Add roles (OR clause)
-  if (options.roles?.length) {
-    const roleClause = options.roles.map((r) => `"${r}"`).join(' OR ');
-    parts.push(`(${roleClause})`);
-  }
-
-  // Add topics (OR clause)
+  // Topics are the PRIMARY filter - these are what we're actually searching for
+  // Each topic should be quoted to match exact phrases
   if (options.topics?.length) {
     const topicClause = options.topics.map((t) => `"${t}"`).join(' OR ');
     parts.push(`(${topicClause})`);
   }
 
-  // Add company filter
+  // Company as context - helps find people at specific companies
+  // But topics take priority
   if (options.company) {
     parts.push(`"${options.company}"`);
   }
 
-  // Add exclusions
+  // Add exclusions to filter out noise
   if (options.exclusions?.length) {
     parts.push(...options.exclusions);
   }
