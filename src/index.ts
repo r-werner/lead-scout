@@ -12,7 +12,7 @@ const MAX_QUERIES_PER_RUN = 20; // Limit per execution (100/day max)
 const COMPANIES_FILE = './data/target-companies.json';
 const KEYWORDS_FILE = './data/search-keywords.json';
 const OUTPUT_FILE = './output/leads.json';
-const EXECUTED_QUERIES_FILE = './data/executed-queries.json';
+const EXECUTED_QUERIES_FILE = './output/executed-queries.json';
 
 async function main() {
   console.log('='.repeat(50));

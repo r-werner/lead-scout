@@ -492,7 +492,7 @@
 
     async function loadLeads() {
       try {
-        const response = await fetch('leads.json');
+        const response = await fetch('output/leads.json');
 
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
@@ -516,9 +516,9 @@
         document.getElementById('content').innerHTML = `
           <div class="error">
             <h3>Could not load leads</h3>
-            <p>Make sure leads.json exists in the output folder.</p>
+            <p>Make sure output/leads.json exists.</p>
             <code>Error: ${escapeHtml(error.message)}</code>
-            <p style="margin-top: 15px;">Run: <code style="display:inline; padding: 4px 8px;">npm run view</code> then open http://localhost:3000/viewer.html</p>
+            <p style="margin-top: 15px;">Run: <code style="display:inline; padding: 4px 8px;">npm run view</code> then open http://localhost:3000</p>
           </div>
         `;
       }
