@@ -191,18 +191,38 @@
       margin-bottom: 10px;
     }
 
+    .lead-snippet {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: #1a1a1a;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #888;
+    }
+
+    .lead-snippet .highlight {
+      background: #3b4f2a;
+      color: #9ece6a;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+
     .lead-topics {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
+      margin-top: 8px;
     }
 
     .topic-tag {
       padding: 3px 8px;
-      background: #252525;
+      background: #3b4f2a;
       border-radius: 4px;
       font-size: 0.75rem;
-      color: #aaa;
+      color: #9ece6a;
+      font-weight: 500;
     }
 
     .lead-actions {
@@ -378,6 +398,24 @@
       return div.innerHTML;
     }
 
+    function highlightKeywords(text, keywords) {
+      if (!text || !keywords || keywords.length === 0) {
+        return escapeHtml(text || '');
+      }
+
+      // Escape text first
+      let result = escapeHtml(text);
+
+      // Create regex pattern for all keywords (case insensitive)
+      keywords.forEach(keyword => {
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`(${escapedKeyword})`, 'gi');
+        result = result.replace(regex, '<span class="highlight">$1</span>');
+      });
+
+      return result;
+    }
+
     function createLeadCard(lead) {
       const initials = getInitials(lead.name);
 
@@ -389,8 +427,14 @@
         ? `<div class="lead-location">${escapeHtml(lead.location)}</div>`
         : '';
 
-      const topicsHtml = (lead.matchedTopics || []).length > 0
-        ? `<div class="lead-topics">${lead.matchedTopics.map(t => `<span class="topic-tag">${escapeHtml(t)}</span>`).join('')}</div>`
+      const matchedTopics = lead.matchedTopics || [];
+
+      const snippetHtml = lead.snippet
+        ? `<div class="lead-snippet">${highlightKeywords(lead.snippet, matchedTopics)}</div>`
+        : '';
+
+      const topicsHtml = matchedTopics.length > 0
+        ? `<div class="lead-topics">${matchedTopics.map(t => `<span class="topic-tag">${escapeHtml(t)}</span>`).join('')}</div>`
         : '';
 
       return `
@@ -401,6 +445,7 @@
             <div class="lead-role">${escapeHtml(lead.role)}</div>
             <div class="lead-company">${escapeHtml(lead.company)}</div>
             ${locationHtml}
+            ${snippetHtml}
             ${topicsHtml}
           </div>
           <div class="lead-actions">
