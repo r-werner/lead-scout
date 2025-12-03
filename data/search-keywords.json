@@ -1,0 +1,32 @@
+{
+  "description": "Keywords for X-Ray search queries. Edit this file to customize search terms.",
+  "roles": [
+    "Head",
+    "Lead",
+    "Principal",
+    "Director",
+    "VP",
+    "Chief",
+    "Staff",
+    "Senior",
+    "Architect",
+    "Manager"
+  ],
+  "topics": [
+    "Agentic AI",
+    "AI Agents",
+    "Autonomous Agents",
+    "Multi-Agent",
+    "LLM Orchestration",
+    "AI Automation",
+    "Agent Framework"
+  ],
+  "exclusions": [
+    "-intitle:\"profiles\"",
+    "-inurl:\"/dir/\"",
+    "-inurl:\"/jobs/\"",
+    "-recruiter",
+    "-\"hiring for\"",
+    "-\"open to work\""
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "lead-scout",
+  "version": "1.0.0",
+  "description": "LinkedIn X-Ray Search Tool for Agentic AI Leads",
+  "type": "module",
+  "scripts": {
+    "search": "tsx src/index.ts",
+    "export-csv": "tsx src/export-csv.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "tsx": "^4.7.0",
+    "@types/node": "^20.11.0"
+  }
+}

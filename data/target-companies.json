@@ -1,0 +1,106 @@
+{
+  "description": "Target companies for LinkedIn X-Ray search. Edit this file to add/remove companies.",
+  "lastUpdated": "2024-01-15",
+  "companies": [
+    {
+      "name": "Microsoft",
+      "priority": 1,
+      "notes": "Major AI investments, Copilot, Azure AI"
+    },
+    {
+      "name": "Google",
+      "priority": 1,
+      "notes": "DeepMind, Gemini, Vertex AI"
+    },
+    {
+      "name": "Salesforce",
+      "priority": 1,
+      "notes": "Einstein AI, Agentforce"
+    },
+    {
+      "name": "OpenAI",
+      "priority": 1,
+      "notes": "GPT, ChatGPT, Assistants API"
+    },
+    {
+      "name": "Anthropic",
+      "priority": 1,
+      "notes": "Claude, Constitutional AI"
+    },
+    {
+      "name": "Meta",
+      "priority": 2,
+      "notes": "LLaMA, AI Research"
+    },
+    {
+      "name": "Amazon",
+      "priority": 2,
+      "notes": "AWS AI, Bedrock, Alexa"
+    },
+    {
+      "name": "Databricks",
+      "priority": 2,
+      "notes": "Data + AI platform, MLflow"
+    },
+    {
+      "name": "Snowflake",
+      "priority": 2,
+      "notes": "Data cloud, Cortex AI"
+    },
+    {
+      "name": "Datadog",
+      "priority": 2,
+      "notes": "Observability, AI ops"
+    },
+    {
+      "name": "Stripe",
+      "priority": 2,
+      "notes": "Fintech, AI fraud detection"
+    },
+    {
+      "name": "Docusign",
+      "priority": 2,
+      "notes": "Hiring for Agentic AI roles"
+    },
+    {
+      "name": "ServiceNow",
+      "priority": 2,
+      "notes": "Enterprise AI workflows"
+    },
+    {
+      "name": "Workday",
+      "priority": 2,
+      "notes": "HR AI, enterprise"
+    },
+    {
+      "name": "Adobe",
+      "priority": 2,
+      "notes": "Firefly, creative AI"
+    },
+    {
+      "name": "Notion",
+      "priority": 3,
+      "notes": "AI features, productivity"
+    },
+    {
+      "name": "Figma",
+      "priority": 3,
+      "notes": "Design AI"
+    },
+    {
+      "name": "Hugging Face",
+      "priority": 3,
+      "notes": "Open source AI hub"
+    },
+    {
+      "name": "Scale AI",
+      "priority": 3,
+      "notes": "Data labeling, enterprise AI"
+    },
+    {
+      "name": "Cohere",
+      "priority": 3,
+      "notes": "Enterprise LLMs"
+    }
+  ]
+}

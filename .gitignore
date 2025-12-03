@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables (contains secrets)
+.env
+
+# Output data (may contain PII)
+output/leads.json
+output/leads.csv
+
+# Query tracking (can be regenerated)
+data/executed-queries.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
