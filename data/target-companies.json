@@ -1,381 +1,286 @@
 {
-  "description": "Target companies for LinkedIn X-Ray search. German-focused with priority based on reachability from German startup. Priority 1 = German startups/tech (easiest), Priority 4 = F100 giants (hardest).",
-  "lastUpdated": "2024-12-03",
+  "description": "Strategic European corporate targets for AI design partnerships. Sourced from ecosystem analysis report covering DAX40, MDAX, CAC40, FTSE100, SMI, AEX indices and European unicorns.",
+  "lastUpdated": "2025-12-03",
   "companies": [
-    {
-      "name": "Celonis",
-      "priority": 1,
-      "notes": "German unicorn, process mining + AI"
-    },
-    {
-      "name": "DeepL",
-      "priority": 1,
-      "notes": "German AI translation leader"
-    },
-    {
-      "name": "Aleph Alpha",
-      "priority": 1,
-      "notes": "German LLM company, sovereign AI"
-    },
-    {
-      "name": "Personio",
-      "priority": 1,
-      "notes": "German HR tech unicorn"
-    },
-    {
-      "name": "SAP",
-      "priority": 1,
-      "notes": "DAX - Enterprise AI, Joule assistant"
-    },
-    {
-      "name": "Siemens",
-      "priority": 1,
-      "notes": "DAX - Industrial AI, digital industries"
-    },
-    {
-      "name": "N26",
-      "priority": 1,
-      "notes": "German fintech, AI banking"
-    },
-    {
-      "name": "Trade Republic",
-      "priority": 1,
-      "notes": "German fintech, trading AI"
-    },
-    {
-      "name": "SumUp",
-      "priority": 1,
-      "notes": "German fintech, payment AI"
-    },
-    {
-      "name": "Contentful",
-      "priority": 1,
-      "notes": "Berlin-based headless CMS"
-    },
-    {
-      "name": "Mambu",
-      "priority": 1,
-      "notes": "Berlin-based banking tech"
-    },
-    {
-      "name": "GetYourGuide",
-      "priority": 1,
-      "notes": "Berlin travel tech unicorn"
-    },
-    {
-      "name": "Forto",
-      "priority": 1,
-      "notes": "Berlin logistics tech"
-    },
-    {
-      "name": "Wefox",
-      "priority": 1,
-      "notes": "Berlin insurtech"
-    },
-    {
-      "name": "Staffbase",
-      "priority": 1,
-      "notes": "German employee communications"
-    },
-    {
-      "name": "Adjust",
-      "priority": 1,
-      "notes": "Berlin mobile analytics"
-    },
-    {
-      "name": "Deutsche Telekom",
-      "priority": 2,
-      "notes": "DAX - Telecom AI, T-Systems"
-    },
-    {
-      "name": "Mercedes-Benz",
-      "priority": 2,
-      "notes": "DAX - Automotive AI, autonomous driving"
-    },
-    {
-      "name": "BMW",
-      "priority": 2,
-      "notes": "DAX - Automotive AI, connected cars"
-    },
-    {
-      "name": "Volkswagen",
-      "priority": 2,
-      "notes": "DAX - CARIAD software, automotive AI"
-    },
-    {
-      "name": "Porsche",
-      "priority": 2,
-      "notes": "DAX - Digital services, automotive AI"
-    },
-    {
-      "name": "Delivery Hero",
-      "priority": 2,
-      "notes": "DAX - Berlin, logistics AI"
-    },
-    {
-      "name": "Zalando",
-      "priority": 2,
-      "notes": "DAX - Berlin, fashion AI/ML"
-    },
-    {
-      "name": "Infineon",
-      "priority": 2,
-      "notes": "DAX - AI chips, edge computing"
-    },
-    {
-      "name": "Deutsche Bank",
-      "priority": 2,
-      "notes": "DAX - Finance AI, digital transformation"
-    },
-    {
-      "name": "Allianz",
-      "priority": 2,
-      "notes": "DAX - Insurance AI, Allianz X"
-    },
-    {
-      "name": "Munich Re",
-      "priority": 2,
-      "notes": "DAX - Insurance AI, risk analytics"
-    },
-    {
-      "name": "Deutsche Post DHL",
-      "priority": 2,
-      "notes": "DAX - Logistics AI, automation"
-    },
-    {
-      "name": "Merck KGaA",
-      "priority": 2,
-      "notes": "DAX - Life science AI, pharma"
-    },
-    {
-      "name": "Commerzbank",
-      "priority": 2,
-      "notes": "DAX - Banking AI"
-    },
-    {
-      "name": "Deutsche Börse",
-      "priority": 2,
-      "notes": "DAX - Trading AI, market data"
-    },
-    {
-      "name": "HelloFresh",
-      "priority": 2,
-      "notes": "MDAX - Berlin, supply chain AI"
-    },
-    {
-      "name": "TeamViewer",
-      "priority": 2,
-      "notes": "MDAX - Remote access, enterprise AI"
-    },
-    {
-      "name": "Scout24",
-      "priority": 2,
-      "notes": "MDAX - Real estate/auto AI"
-    },
-    {
-      "name": "AUTO1 Group",
-      "priority": 2,
-      "notes": "MDAX - Berlin, auto marketplace AI"
-    },
-    {
-      "name": "Nemetschek",
-      "priority": 2,
-      "notes": "MDAX - Construction software, BIM AI"
-    },
-    {
-      "name": "Software AG",
-      "priority": 2,
-      "notes": "MDAX - Enterprise software, IoT"
-    },
-    {
-      "name": "CompuGroup Medical",
-      "priority": 2,
-      "notes": "MDAX - Health IT, medical AI"
-    },
-    {
-      "name": "CANCOM",
-      "priority": 2,
-      "notes": "MDAX - IT services, cloud AI"
-    },
-    {
-      "name": "Carl Zeiss Meditec",
-      "priority": 2,
-      "notes": "MDAX - Medical imaging AI"
-    },
-    {
-      "name": "Evotec",
-      "priority": 2,
-      "notes": "MDAX - Drug discovery AI"
-    },
-    {
-      "name": "Aixtron",
-      "priority": 2,
-      "notes": "MDAX - Semiconductor equipment"
-    },
-    {
-      "name": "Jenoptik",
-      "priority": 2,
-      "notes": "MDAX - Photonics, automation"
-    },
-    {
-      "name": "FlixBus",
-      "priority": 2,
-      "notes": "German mobility unicorn"
-    },
-    {
-      "name": "Mistral AI",
-      "priority": 2,
-      "notes": "Paris - European LLM leader"
-    },
-    {
-      "name": "Dataiku",
-      "priority": 2,
-      "notes": "Paris - Enterprise AI platform"
-    },
-    {
-      "name": "Hugging Face",
-      "priority": 2,
-      "notes": "Open source AI hub, Paris roots"
-    },
-    {
-      "name": "UiPath",
-      "priority": 2,
-      "notes": "European RPA, agentic automation"
-    },
-    {
-      "name": "Databricks",
-      "priority": 3,
-      "notes": "US - Data + AI platform, MLflow"
-    },
-    {
-      "name": "Snowflake",
-      "priority": 3,
-      "notes": "US - Data cloud, Cortex AI"
-    },
-    {
-      "name": "ServiceNow",
-      "priority": 3,
-      "notes": "US - Enterprise AI workflows"
-    },
-    {
-      "name": "Workday",
-      "priority": 3,
-      "notes": "US - HR AI, enterprise"
-    },
-    {
-      "name": "Salesforce",
-      "priority": 3,
-      "notes": "US - Einstein AI, Agentforce"
-    },
-    {
-      "name": "OpenAI",
-      "priority": 3,
-      "notes": "US - GPT, ChatGPT, Assistants API"
-    },
-    {
-      "name": "Anthropic",
-      "priority": 3,
-      "notes": "US - Claude, Constitutional AI"
-    },
-    {
-      "name": "Cohere",
-      "priority": 3,
-      "notes": "Canada - Enterprise LLMs"
-    },
-    {
-      "name": "Scale AI",
-      "priority": 3,
-      "notes": "US - Data labeling, enterprise AI"
-    },
-    {
-      "name": "Stripe",
-      "priority": 3,
-      "notes": "US - Fintech, AI fraud detection"
-    },
-    {
-      "name": "Docusign",
-      "priority": 3,
-      "notes": "US - Hiring for Agentic AI roles"
-    },
-    {
-      "name": "Datadog",
-      "priority": 3,
-      "notes": "US - Observability, AI ops"
-    },
-    {
-      "name": "Adobe",
-      "priority": 3,
-      "notes": "US - Firefly, creative AI"
-    },
-    {
-      "name": "Notion",
-      "priority": 3,
-      "notes": "US - AI features, productivity"
-    },
-    {
-      "name": "Figma",
-      "priority": 3,
-      "notes": "US - Design AI"
-    },
-    {
-      "name": "Atlassian",
-      "priority": 3,
-      "notes": "US - Dev tools AI, Rovo"
-    },
-    {
-      "name": "HashiCorp",
-      "priority": 3,
-      "notes": "US - Infrastructure automation"
-    },
-    {
-      "name": "MongoDB",
-      "priority": 3,
-      "notes": "US - Database, vector search"
-    },
-    {
-      "name": "Elastic",
-      "priority": 3,
-      "notes": "US - Search AI, observability"
-    },
-    {
-      "name": "Microsoft",
-      "priority": 4,
-      "notes": "F100 - Copilot, Azure AI (harder to reach)"
-    },
-    {
-      "name": "Google",
-      "priority": 4,
-      "notes": "F100 - DeepMind, Gemini (harder to reach)"
-    },
-    {
-      "name": "Meta",
-      "priority": 4,
-      "notes": "F100 - LLaMA, AI Research (harder to reach)"
-    },
-    {
-      "name": "Amazon",
-      "priority": 4,
-      "notes": "F100 - AWS AI, Bedrock (harder to reach)"
-    },
-    {
-      "name": "Apple",
-      "priority": 4,
-      "notes": "F100 - Apple Intelligence (harder to reach)"
-    },
-    {
-      "name": "Nvidia",
-      "priority": 4,
-      "notes": "F100 - AI hardware, NeMo (harder to reach)"
-    },
-    {
-      "name": "IBM",
-      "priority": 4,
-      "notes": "F100 - WatsonX, enterprise AI (harder to reach)"
-    },
-    {
-      "name": "Oracle",
-      "priority": 4,
-      "notes": "F100 - Cloud AI, enterprise (harder to reach)"
-    }
+    {"name": "Adidas AG", "index": "DAX", "country": "DE", "sector": "Consumer", "strategicAIInterest": "Supply chain prediction, trend forecasting AI, personalized retail"},
+    {"name": "Airbus SE", "index": "DAX", "country": "DE", "sector": "Aerospace", "strategicAIInterest": "Autonomous flight, manufacturing robotics, predictive maintenance"},
+    {"name": "Allianz SE", "index": "DAX", "country": "DE", "sector": "Insurance", "strategicAIInterest": "Risk algorithms, fraud detection, automated claims processing"},
+    {"name": "BASF SE", "index": "DAX", "country": "DE", "sector": "Chemicals", "strategicAIInterest": "Material informatics, agricultural AI, logistics optimization"},
+    {"name": "Bayer AG", "index": "DAX", "country": "DE", "sector": "Pharma/Ag", "strategicAIInterest": "Drug discovery, precision farming, digital health"},
+    {"name": "Beiersdorf AG", "index": "DAX", "country": "DE", "sector": "Consumer", "strategicAIInterest": "Skin diagnostic AI, personalized skincare, marketing tech"},
+    {"name": "BMW AG", "index": "DAX", "country": "DE", "sector": "Auto", "strategicAIInterest": "Autonomous driving, smart factory, in-car entertainment"},
+    {"name": "Brenntag SE", "index": "DAX", "country": "DE", "sector": "Logistics", "strategicAIInterest": "Demand forecasting, chemical distribution optimization"},
+    {"name": "Commerzbank", "index": "DAX", "country": "DE", "sector": "Banking", "strategicAIInterest": "SME credit scoring, automated customer support"},
+    {"name": "Continental", "index": "DAX", "country": "DE", "sector": "Auto Parts", "strategicAIInterest": "Smart infrastructure sensors, autonomous mobility systems"},
+    {"name": "Daimler Truck", "index": "DAX", "country": "DE", "sector": "Transport", "strategicAIInterest": "Autonomous trucking, fleet management analytics"},
+    {"name": "Deutsche Bank", "index": "DAX", "country": "DE", "sector": "Banking", "strategicAIInterest": "Algorithmic trading, financial crime detection, KYC automation"},
+    {"name": "Deutsche Boerse", "index": "DAX", "country": "DE", "sector": "Finance", "strategicAIInterest": "Market data analytics, AI for trading surveillance"},
+    {"name": "Deutsche Post", "index": "DAX", "country": "DE", "sector": "Logistics", "strategicAIInterest": "Last-mile optimization, robotics in sorting centers"},
+    {"name": "Deutsche Telekom", "index": "DAX", "country": "DE", "sector": "Telecom", "strategicAIInterest": "Network automation, 5G edge AI, customer service bots"},
+    {"name": "E.ON SE", "index": "DAX", "country": "DE", "sector": "Energy", "strategicAIInterest": "Smart grid management, energy load forecasting"},
+    {"name": "Fresenius", "index": "DAX", "country": "DE", "sector": "Healthcare", "strategicAIInterest": "Dialysis data analytics, hospital management efficiency"},
+    {"name": "Hannover Rueck", "index": "DAX", "country": "DE", "sector": "Insurance", "strategicAIInterest": "Reinsurance risk modeling, natural catastrophe prediction"},
+    {"name": "Heidelberg Materials", "index": "DAX", "country": "DE", "sector": "Construction", "strategicAIInterest": "Carbon capture simulation, cement process optimization"},
+    {"name": "Henkel AG", "index": "DAX", "country": "DE", "sector": "Consumer", "strategicAIInterest": "Ad-tech optimization, chemical supply chain"},
+    {"name": "Infineon", "index": "DAX", "country": "DE", "sector": "Tech", "strategicAIInterest": "Semiconductor manufacturing AI, power management chips"},
+    {"name": "Mercedes-Benz", "index": "DAX", "country": "DE", "sector": "Auto", "strategicAIInterest": "Luxury digital experience, autonomous drive stack"},
+    {"name": "Merck KGaA", "index": "DAX", "country": "DE", "sector": "Pharma/Tech", "strategicAIInterest": "Electronics materials discovery, life science lab automation"},
+    {"name": "MTU Aero Engines", "index": "DAX", "country": "DE", "sector": "Aerospace", "strategicAIInterest": "Engine predictive maintenance, additive manufacturing AI"},
+    {"name": "Munich Re", "index": "DAX", "country": "DE", "sector": "Insurance", "strategicAIInterest": "Climate risk AI, cyber risk modeling, IoT insurance"},
+    {"name": "Porsche AG", "index": "DAX", "country": "DE", "sector": "Auto", "strategicAIInterest": "High-performance computing, digital lifestyle apps"},
+    {"name": "Qiagen NV", "index": "DAX", "country": "DE", "sector": "Biotech", "strategicAIInterest": "Bioinformatics, DNA sequencing data analysis"},
+    {"name": "Rheinmetall AG", "index": "DAX", "country": "DE", "sector": "Defense", "strategicAIInterest": "Autonomous systems, defense logistics, security AI"},
+    {"name": "RWE AG", "index": "DAX", "country": "DE", "sector": "Energy", "strategicAIInterest": "Renewable energy trading algorithms, wind farm optimization"},
+    {"name": "SAP SE", "index": "DAX", "country": "DE", "sector": "Software", "strategicAIInterest": "Generative AI for enterprise, ERP automation, HR tech"},
+    {"name": "Sartorius AG", "index": "DAX", "country": "DE", "sector": "Biotech", "strategicAIInterest": "Bioprocess data analytics, lab automation"},
+    {"name": "Siemens AG", "index": "DAX", "country": "DE", "sector": "Industrial", "strategicAIInterest": "Digital twins, industrial metaverse, smart infrastructure"},
+    {"name": "Siemens Energy", "index": "DAX", "country": "DE", "sector": "Energy", "strategicAIInterest": "Grid decarbonization, turbine predictive maintenance"},
+    {"name": "Siemens Healthineers", "index": "DAX", "country": "DE", "sector": "MedTech", "strategicAIInterest": "AI in radiology, diagnostic imaging, lab diagnostics"},
+    {"name": "Symrise AG", "index": "DAX", "country": "DE", "sector": "Chemicals", "strategicAIInterest": "AI for scent and flavor formulation, consumer insights"},
+    {"name": "Volkswagen AG", "index": "DAX", "country": "DE", "sector": "Auto", "strategicAIInterest": "Software-defined vehicle platform, battery analytics"},
+    {"name": "Vonovia SE", "index": "DAX", "country": "DE", "sector": "Real Estate", "strategicAIInterest": "Smart building management, predictive maintenance for housing"},
+    {"name": "Zalando SE", "index": "DAX", "country": "DE", "sector": "E-commerce", "strategicAIInterest": "Fashion recommendation engines, size fitting AI, logistics"},
+    {"name": "Aixtron SE", "index": "MDAX", "country": "DE", "sector": "Tech", "strategicAIInterest": "Semiconductor deposition equipment precision"},
+    {"name": "Aurubis AG", "index": "MDAX", "country": "DE", "sector": "Industrial", "strategicAIInterest": "Metal recycling efficiency, process automation"},
+    {"name": "Bechtle AG", "index": "MDAX", "country": "DE", "sector": "IT Services", "strategicAIInterest": "IT infrastructure management, cloud migration AI"},
+    {"name": "Bilfinger SE", "index": "MDAX", "country": "DE", "sector": "Industrial", "strategicAIInterest": "Industrial plant maintenance prediction"},
+    {"name": "Carl Zeiss Meditec", "index": "MDAX", "country": "DE", "sector": "MedTech", "strategicAIInterest": "Ophthalmic microsurgery AI, medical diagnostics"},
+    {"name": "CTS Eventim", "index": "MDAX", "country": "DE", "sector": "Media", "strategicAIInterest": "Dynamic pricing, ticketing fraud detection"},
+    {"name": "Delivery Hero", "index": "MDAX", "country": "DE", "sector": "Logistics", "strategicAIInterest": "Last-mile delivery algorithms, food recommendation AI"},
+    {"name": "Evonik Industries", "index": "MDAX", "country": "DE", "sector": "Chemicals", "strategicAIInterest": "Specialty chemicals R&D, digital chemistry"},
+    {"name": "Fielmann AG", "index": "MDAX", "country": "DE", "sector": "Retail", "strategicAIInterest": "Virtual try-on for glasses, omnichannel retail AI"},
+    {"name": "Fraport AG", "index": "MDAX", "country": "DE", "sector": "Transport", "strategicAIInterest": "Airport logistics optimization, passenger flow AI"},
+    {"name": "Freenet AG", "index": "MDAX", "country": "DE", "sector": "Telecom", "strategicAIInterest": "Customer retention AI, digital lifestyle services"},
+    {"name": "Fuchs Petrolub", "index": "MDAX", "country": "DE", "sector": "Chemicals", "strategicAIInterest": "Lubricant formulation optimization"},
+    {"name": "GEA Group", "index": "MDAX", "country": "DE", "sector": "Industrial", "strategicAIInterest": "Food processing machinery automation"},
+    {"name": "Gerresheimer", "index": "MDAX", "country": "DE", "sector": "Pharma", "strategicAIInterest": "Smart drug delivery devices, connected health"},
+    {"name": "HelloFresh", "index": "MDAX", "country": "DE", "sector": "Consumer", "strategicAIInterest": "Recipe personalization, perishable supply chain AI"},
+    {"name": "Hensoldt AG", "index": "MDAX", "country": "DE", "sector": "Defense", "strategicAIInterest": "Sensor fusion, electronic warfare AI, radar analytics"},
+    {"name": "Hugo Boss", "index": "MDAX", "country": "DE", "sector": "Consumer", "strategicAIInterest": "Fashion trend prediction, supply chain efficiency"},
+    {"name": "Jenoptik AG", "index": "MDAX", "country": "DE", "sector": "Tech", "strategicAIInterest": "Photonics, optical metrology AI"},
+    {"name": "Jungheinrich", "index": "MDAX", "country": "DE", "sector": "Logistics", "strategicAIInterest": "Autonomous forklifts, warehouse management systems"},
+    {"name": "K+S AG", "index": "MDAX", "country": "DE", "sector": "Agriculture", "strategicAIInterest": "Mining optimization, fertilizer application data"},
+    {"name": "Kion Group", "index": "MDAX", "country": "DE", "sector": "Logistics", "strategicAIInterest": "Warehouse automation robotics, supply chain software"},
+    {"name": "Knorr-Bremse", "index": "MDAX", "country": "DE", "sector": "Transport", "strategicAIInterest": "Rail and truck safety systems, autonomous braking"},
+    {"name": "Krones AG", "index": "MDAX", "country": "DE", "sector": "Industrial", "strategicAIInterest": "Bottling plant automation, predictive maintenance"},
+    {"name": "Lanxess AG", "index": "MDAX", "country": "DE", "sector": "Chemicals", "strategicAIInterest": "Chemical process safety, quality control AI"},
+    {"name": "LEG Immobilien", "index": "MDAX", "country": "DE", "sector": "Real Estate", "strategicAIInterest": "Tenant management platforms, building energy efficiency"},
+    {"name": "Lufthansa", "index": "MDAX", "country": "DE", "sector": "Transport", "strategicAIInterest": "Flight scheduling AI, passenger personalization"},
+    {"name": "Nemetschek SE", "index": "MDAX", "country": "DE", "sector": "Software", "strategicAIInterest": "Generative design for architecture, construction twins"},
+    {"name": "Nordex SE", "index": "MDAX", "country": "DE", "sector": "Energy", "strategicAIInterest": "Wind turbine performance optimization"},
+    {"name": "Puma SE", "index": "MDAX", "country": "DE", "sector": "Consumer", "strategicAIInterest": "Retail analytics, marketing attribution modeling"},
+    {"name": "Rational AG", "index": "MDAX", "country": "DE", "sector": "Industrial", "strategicAIInterest": "Connected cooking appliances, commercial kitchen IoT"},
+    {"name": "Scout24 SE", "index": "MDAX", "country": "DE", "sector": "Digital", "strategicAIInterest": "Real estate valuation AI, recommendation systems"},
+    {"name": "Stroeer SE", "index": "MDAX", "country": "DE", "sector": "Media", "strategicAIInterest": "Programmatic advertising, out-of-home audience measurement"},
+    {"name": "Talanx AG", "index": "MDAX", "country": "DE", "sector": "Insurance", "strategicAIInterest": "Industrial insurance risk modeling"},
+    {"name": "TeamViewer", "index": "MDAX", "country": "DE", "sector": "Software", "strategicAIInterest": "AR remote assistance, industrial connectivity"},
+    {"name": "ThyssenKrupp", "index": "MDAX", "country": "DE", "sector": "Industrial", "strategicAIInterest": "Green steel production, elevator predictive maintenance"},
+    {"name": "Traton SE", "index": "MDAX", "country": "DE", "sector": "Transport", "strategicAIInterest": "Commercial vehicle telematics, logistics"},
+    {"name": "United Internet", "index": "MDAX", "country": "DE", "sector": "Telecom", "strategicAIInterest": "Cloud infrastructure, email security AI"},
+    {"name": "Wacker Chemie", "index": "MDAX", "country": "DE", "sector": "Chemicals", "strategicAIInterest": "Polysilicon production efficiency"},
+    {"name": "Accor", "index": "CAC40", "country": "FR", "sector": "Hospitality", "strategicAIInterest": "Dynamic pricing, personalized guest experience, loyalty AI"},
+    {"name": "Air Liquide", "index": "CAC40", "country": "FR", "sector": "Chemicals", "strategicAIInterest": "Industrial gas distribution, healthcare IoT, deep tech"},
+    {"name": "Airbus", "index": "CAC40", "country": "FR", "sector": "Aerospace", "strategicAIInterest": "Flight autonomy, manufacturing robotics, satellite imagery"},
+    {"name": "ArcelorMittal", "index": "CAC40", "country": "FR", "sector": "Industrial", "strategicAIInterest": "Steel production efficiency, carbon capture AI"},
+    {"name": "AXA", "index": "CAC40", "country": "FR", "sector": "Insurance", "strategicAIInterest": "Parametric insurance, health data analytics, cyber risk"},
+    {"name": "BNP Paribas", "index": "CAC40", "country": "FR", "sector": "Banking", "strategicAIInterest": "Retail banking AI, fraud detection, sustainable finance data"},
+    {"name": "Bouygues", "index": "CAC40", "country": "FR", "sector": "Construction", "strategicAIInterest": "Smart city infrastructure, telecom data usage"},
+    {"name": "Capgemini", "index": "CAC40", "country": "FR", "sector": "Tech", "strategicAIInterest": "AI consultancy, applied innovation exchange"},
+    {"name": "Carrefour", "index": "CAC40", "country": "FR", "sector": "Retail", "strategicAIInterest": "Supply chain forecasting, cashier-less checkout, retail media"},
+    {"name": "Credit Agricole", "index": "CAC40", "country": "FR", "sector": "Banking", "strategicAIInterest": "Ag-tech finance, green banking analytics"},
+    {"name": "Danone", "index": "CAC40", "country": "FR", "sector": "Food", "strategicAIInterest": "Precision nutrition, supply chain sustainability"},
+    {"name": "Dassault Systemes", "index": "CAC40", "country": "FR", "sector": "Tech", "strategicAIInterest": "Virtual twins, 3D simulation, life sciences modeling"},
+    {"name": "Edenred", "index": "CAC40", "country": "FR", "sector": "Services", "strategicAIInterest": "Payment solutions, employee benefit personalization"},
+    {"name": "Engie", "index": "CAC40", "country": "FR", "sector": "Energy", "strategicAIInterest": "Renewable energy management, decentralized grid AI"},
+    {"name": "EssilorLuxottica", "index": "CAC40", "country": "FR", "sector": "MedTech", "strategicAIInterest": "Smart eyewear, vision diagnostics AI"},
+    {"name": "Eurofins Scientific", "index": "CAC40", "country": "FR", "sector": "Biotech", "strategicAIInterest": "Lab testing automation, genomic data analysis"},
+    {"name": "Hermes", "index": "CAC40", "country": "FR", "sector": "Luxury", "strategicAIInterest": "Craftsmanship traceability, exclusive client services"},
+    {"name": "Kering", "index": "CAC40", "country": "FR", "sector": "Luxury", "strategicAIInterest": "Sustainable fashion materials, luxury retail analytics"},
+    {"name": "Legrand", "index": "CAC40", "country": "FR", "sector": "Industrial", "strategicAIInterest": "Smart home devices, electrical infrastructure IoT"},
+    {"name": "L'Oreal", "index": "CAC40", "country": "FR", "sector": "Consumer", "strategicAIInterest": "Beauty tech, skin diagnostics, personalized formulation"},
+    {"name": "LVMH", "index": "CAC40", "country": "FR", "sector": "Luxury", "strategicAIInterest": "Luxury trend forecasting, blockchain authentication"},
+    {"name": "Michelin", "index": "CAC40", "country": "FR", "sector": "Auto Parts", "strategicAIInterest": "Connected tires, fleet mobility data services"},
+    {"name": "Orange", "index": "CAC40", "country": "FR", "sector": "Telecom", "strategicAIInterest": "Network AI, cybersecurity, customer support automation"},
+    {"name": "Pernod Ricard", "index": "CAC40", "country": "FR", "sector": "Consumer", "strategicAIInterest": "Marketing mix modeling, connected packaging"},
+    {"name": "Publicis Groupe", "index": "CAC40", "country": "FR", "sector": "Media", "strategicAIInterest": "Generative AI for marketing, ad-tech optimization"},
+    {"name": "Renault", "index": "CAC40", "country": "FR", "sector": "Auto", "strategicAIInterest": "EV software, mobility services, circular economy"},
+    {"name": "Safran", "index": "CAC40", "country": "FR", "sector": "Aerospace", "strategicAIInterest": "Defense electronics, engine maintenance AI"},
+    {"name": "Saint-Gobain", "index": "CAC40", "country": "FR", "sector": "Construction", "strategicAIInterest": "Sustainable building materials, manufacturing efficiency"},
+    {"name": "Sanofi", "index": "CAC40", "country": "FR", "sector": "Pharma", "strategicAIInterest": "AI in drug discovery, clinical trial optimization"},
+    {"name": "Schneider Electric", "index": "CAC40", "country": "FR", "sector": "Industrial", "strategicAIInterest": "Energy efficiency AI, smart buildings, industrial IoT"},
+    {"name": "Societe Generale", "index": "CAC40", "country": "FR", "sector": "Banking", "strategicAIInterest": "Financial markets AI, trading algorithms"},
+    {"name": "Stellantis", "index": "CAC40", "country": "FR", "sector": "Auto", "strategicAIInterest": "Software-defined vehicles, mobility platforms"},
+    {"name": "STMicroelectronics", "index": "CAC40", "country": "FR", "sector": "Tech", "strategicAIInterest": "Edge AI chips, sensor processing"},
+    {"name": "Teleperformance", "index": "CAC40", "country": "FR", "sector": "Services", "strategicAIInterest": "AI-augmented customer support, multilingual NLP"},
+    {"name": "Thales", "index": "CAC40", "country": "FR", "sector": "Defense", "strategicAIInterest": "Cybersecurity, aerospace avionics, digital identity"},
+    {"name": "TotalEnergies", "index": "CAC40", "country": "FR", "sector": "Energy", "strategicAIInterest": "Multi-energy management, carbon footprint tracking"},
+    {"name": "Unibail-Rodamco", "index": "CAC40", "country": "FR", "sector": "Real Estate", "strategicAIInterest": "Shopping mall footfall analytics, retail tenant tech"},
+    {"name": "Veolia", "index": "CAC40", "country": "FR", "sector": "Utilities", "strategicAIInterest": "Water management AI, waste sorting robotics"},
+    {"name": "Vinci", "index": "CAC40", "country": "FR", "sector": "Construction", "strategicAIInterest": "Smart highways, airport management, construction tech"},
+    {"name": "Vivendi", "index": "CAC40", "country": "FR", "sector": "Media", "strategicAIInterest": "Content recommendation, entertainment tech"},
+    {"name": "3i Group", "index": "FTSE100", "country": "UK", "sector": "Finance", "strategicAIInterest": "Private equity portfolio value creation"},
+    {"name": "Admiral Group", "index": "FTSE100", "country": "UK", "sector": "Insurance", "strategicAIInterest": "Telematics data, car insurance risk pricing"},
+    {"name": "Anglo American", "index": "FTSE100", "country": "UK", "sector": "Mining", "strategicAIInterest": "Autonomous mining, geological data analysis"},
+    {"name": "Antofagasta", "index": "FTSE100", "country": "UK", "sector": "Mining", "strategicAIInterest": "Copper mining efficiency, predictive maintenance"},
+    {"name": "Ashtead Group", "index": "FTSE100", "country": "UK", "sector": "Industrial", "strategicAIInterest": "Equipment rental logistics, IoT tracking"},
+    {"name": "Associated British Foods", "index": "FTSE100", "country": "UK", "sector": "Food", "strategicAIInterest": "Supply chain optimization, retail analytics (Primark)"},
+    {"name": "AstraZeneca", "index": "FTSE100", "country": "UK", "sector": "Pharma", "strategicAIInterest": "AI drug discovery, oncology data analytics"},
+    {"name": "Auto Trader Group", "index": "FTSE100", "country": "UK", "sector": "Digital", "strategicAIInterest": "Car valuation algorithms, marketplace search AI"},
+    {"name": "Aviva", "index": "FTSE100", "country": "UK", "sector": "Insurance", "strategicAIInterest": "Digital insurance platforms, customer AI"},
+    {"name": "BAE Systems", "index": "FTSE100", "country": "UK", "sector": "Defense", "strategicAIInterest": "Cyber defense, electronic warfare, future combat air systems"},
+    {"name": "Barclays", "index": "FTSE100", "country": "UK", "sector": "Banking", "strategicAIInterest": "Fintech innovation, payment processing AI"},
+    {"name": "BP", "index": "FTSE100", "country": "UK", "sector": "Energy", "strategicAIInterest": "Energy trading AI, EV charging network optimization"},
+    {"name": "British American Tobacco", "index": "FTSE100", "country": "UK", "sector": "Consumer", "strategicAIInterest": "Bio-tech research, supply chain transformation"},
+    {"name": "BT Group", "index": "FTSE100", "country": "UK", "sector": "Telecom", "strategicAIInterest": "Fiber network planning, 5G services, cybersecurity"},
+    {"name": "Bunzl", "index": "FTSE100", "country": "UK", "sector": "Logistics", "strategicAIInterest": "Distribution logistics, inventory management"},
+    {"name": "Burberry Group", "index": "FTSE100", "country": "UK", "sector": "Luxury", "strategicAIInterest": "Fashion trend AI, luxury retail experience"},
+    {"name": "Centrica", "index": "FTSE100", "country": "UK", "sector": "Energy", "strategicAIInterest": "Smart home energy (Hive), grid flexibility"},
+    {"name": "Compass Group", "index": "FTSE100", "country": "UK", "sector": "Services", "strategicAIInterest": "Food service waste reduction, menu personalization"},
+    {"name": "Croda International", "index": "FTSE100", "country": "UK", "sector": "Chemicals", "strategicAIInterest": "Life science ingredients, smart materials"},
+    {"name": "Diageo", "index": "FTSE100", "country": "UK", "sector": "Consumer", "strategicAIInterest": "Marketing analytics, consumer taste profiling"},
+    {"name": "Entain", "index": "FTSE100", "country": "UK", "sector": "Betting", "strategicAIInterest": "Responsible gambling AI, odds calculation"},
+    {"name": "Experian", "index": "FTSE100", "country": "UK", "sector": "Finance", "strategicAIInterest": "Credit scoring models, identity fraud detection"},
+    {"name": "Glencore", "index": "FTSE100", "country": "UK", "sector": "Mining", "strategicAIInterest": "Commodity trading algorithms, mining automation"},
+    {"name": "GSK", "index": "FTSE100", "country": "UK", "sector": "Pharma", "strategicAIInterest": "Vaccine development AI, immune system modeling"},
+    {"name": "Haleon", "index": "FTSE100", "country": "UK", "sector": "Consumer Health", "strategicAIInterest": "Consumer health insights, digital commerce"},
+    {"name": "Halma", "index": "FTSE100", "country": "UK", "sector": "Industrial", "strategicAIInterest": "Safety technology, environmental monitoring"},
+    {"name": "HSBC", "index": "FTSE100", "country": "UK", "sector": "Banking", "strategicAIInterest": "Global trade finance, cross-border payment AI"},
+    {"name": "Informa", "index": "FTSE100", "country": "UK", "sector": "Media", "strategicAIInterest": "B2B events data, academic publishing analytics"},
+    {"name": "InterContinental Hotels", "index": "FTSE100", "country": "UK", "sector": "Hospitality", "strategicAIInterest": "Revenue management systems, guest personalization"},
+    {"name": "Intertek Group", "index": "FTSE100", "country": "UK", "sector": "Services", "strategicAIInterest": "Supply chain assurance, quality testing data"},
+    {"name": "Legal & General", "index": "FTSE100", "country": "UK", "sector": "Finance", "strategicAIInterest": "Pension risk transfer modeling, investment AI"},
+    {"name": "Lloyds Banking Group", "index": "FTSE100", "country": "UK", "sector": "Banking", "strategicAIInterest": "Digital banking transformation, financial well-being AI"},
+    {"name": "London Stock Exchange", "index": "FTSE100", "country": "UK", "sector": "Finance", "strategicAIInterest": "Financial data analytics, trading infrastructure"},
+    {"name": "National Grid", "index": "FTSE100", "country": "UK", "sector": "Utility", "strategicAIInterest": "Electricity transmission optimization, green energy balance"},
+    {"name": "NatWest Group", "index": "FTSE100", "country": "UK", "sector": "Banking", "strategicAIInterest": "Commercial banking tech, climate finance data"},
+    {"name": "Next", "index": "FTSE100", "country": "UK", "sector": "Retail", "strategicAIInterest": "Online retail logistics, fashion directory AI"},
+    {"name": "Ocado Group", "index": "FTSE100", "country": "UK", "sector": "Tech/Retail", "strategicAIInterest": "Robotics, warehouse swarms, grocery delivery AI"},
+    {"name": "Pearson", "index": "FTSE100", "country": "UK", "sector": "Education", "strategicAIInterest": "AI tutoring systems, digital learning assessment"},
+    {"name": "Prudential", "index": "FTSE100", "country": "UK", "sector": "Insurance", "strategicAIInterest": "Asian/African market insurance tech"},
+    {"name": "Reckitt Benckiser", "index": "FTSE100", "country": "UK", "sector": "Consumer", "strategicAIInterest": "Hygiene product R&D, e-commerce analytics"},
+    {"name": "RELX", "index": "FTSE100", "country": "UK", "sector": "Media/Tech", "strategicAIInterest": "Legal analytics, scientific information extraction"},
+    {"name": "Rentokil Initial", "index": "FTSE100", "country": "UK", "sector": "Services", "strategicAIInterest": "Connected pest control, hygiene IoT"},
+    {"name": "Rio Tinto", "index": "FTSE100", "country": "UK", "sector": "Mining", "strategicAIInterest": "Mine-to-market automation, aluminum production AI"},
+    {"name": "Rolls-Royce", "index": "FTSE100", "country": "UK", "sector": "Aerospace", "strategicAIInterest": "Jet engine health monitoring (IntelligentEngine)"},
+    {"name": "Sage Group", "index": "FTSE100", "country": "UK", "sector": "Software", "strategicAIInterest": "SME accounting automation, HR AI"},
+    {"name": "Sainsbury's", "index": "FTSE100", "country": "UK", "sector": "Retail", "strategicAIInterest": "Retail loyalty data (Nectar), supply chain"},
+    {"name": "Segro", "index": "FTSE100", "country": "UK", "sector": "Real Estate", "strategicAIInterest": "Data center real estate, warehouse logistics"},
+    {"name": "Severn Trent", "index": "FTSE100", "country": "UK", "sector": "Utility", "strategicAIInterest": "Water leakage detection, smart metering"},
+    {"name": "Shell", "index": "FTSE100", "country": "UK", "sector": "Energy", "strategicAIInterest": "Renewable energy integration, geological AI"},
+    {"name": "Smith & Nephew", "index": "FTSE100", "country": "UK", "sector": "MedTech", "strategicAIInterest": "Robotic surgery assistants, wound care management"},
+    {"name": "SSE", "index": "FTSE100", "country": "UK", "sector": "Energy", "strategicAIInterest": "Wind farm efficiency, hydro energy storage"},
+    {"name": "Standard Chartered", "index": "FTSE100", "country": "UK", "sector": "Banking", "strategicAIInterest": "Emerging markets fintech, trade digitization"},
+    {"name": "Taylor Wimpey", "index": "FTSE100", "country": "UK", "sector": "Construction", "strategicAIInterest": "Land planning data, construction scheduling"},
+    {"name": "Tesco", "index": "FTSE100", "country": "UK", "sector": "Retail", "strategicAIInterest": "Clubcard data analytics, autonomous delivery"},
+    {"name": "Unilever", "index": "FTSE100", "country": "UK", "sector": "Consumer", "strategicAIInterest": "Consumer insights, sustainable sourcing AI"},
+    {"name": "United Utilities", "index": "FTSE100", "country": "UK", "sector": "Utility", "strategicAIInterest": "Water network management, pollution monitoring"},
+    {"name": "Vodafone Group", "index": "FTSE100", "country": "UK", "sector": "Telecom", "strategicAIInterest": "IoT connectivity platform, network AI"},
+    {"name": "Whitbread", "index": "FTSE100", "country": "UK", "sector": "Hospitality", "strategicAIInterest": "Hotel operations efficiency (Premier Inn)"},
+    {"name": "WPP", "index": "FTSE100", "country": "UK", "sector": "Media", "strategicAIInterest": "Creative AI, advertising technology"},
+    {"name": "ABB", "index": "SMI", "country": "CH", "sector": "Industrial", "strategicAIInterest": "Industrial robotics, electrification, smart cities"},
+    {"name": "Alcon", "index": "SMI", "country": "CH", "sector": "MedTech", "strategicAIInterest": "Eye care devices, vision diagnostics"},
+    {"name": "Geberit", "index": "SMI", "country": "CH", "sector": "Industrial", "strategicAIInterest": "Sanitary technology, manufacturing automation"},
+    {"name": "Givaudan", "index": "SMI", "country": "CH", "sector": "Chemicals", "strategicAIInterest": "AI for flavor and fragrance creation"},
+    {"name": "Holcim", "index": "SMI", "country": "CH", "sector": "Construction", "strategicAIInterest": "Venture Client unit, sustainable building tech"},
+    {"name": "Kuehne + Nagel", "index": "SMI", "country": "CH", "sector": "Logistics", "strategicAIInterest": "Global freight forwarding AI, supply chain visibility"},
+    {"name": "Logitech", "index": "SMI", "country": "CH", "sector": "Tech", "strategicAIInterest": "Peripherals, software-enabled hardware"},
+    {"name": "Lonza", "index": "SMI", "country": "CH", "sector": "Pharma", "strategicAIInterest": "CDMO services, biotech manufacturing"},
+    {"name": "Nestle", "index": "SMI", "country": "CH", "sector": "Food", "strategicAIInterest": "Personalized nutrition, supply chain AI"},
+    {"name": "Novartis", "index": "SMI", "country": "CH", "sector": "Pharma", "strategicAIInterest": "Data science, clinical trial efficiency"},
+    {"name": "Partners Group", "index": "SMI", "country": "CH", "sector": "Finance", "strategicAIInterest": "Private markets data analytics"},
+    {"name": "Richemont", "index": "SMI", "country": "CH", "sector": "Luxury", "strategicAIInterest": "(Cartier owner) Luxury retail, craftsmanship"},
+    {"name": "Roche", "index": "SMI", "country": "CH", "sector": "Pharma", "strategicAIInterest": "Diagnostics, digital health, personalized medicine"},
+    {"name": "Sika", "index": "SMI", "country": "CH", "sector": "Chemicals", "strategicAIInterest": "Construction chemicals, material science"},
+    {"name": "Sonova", "index": "SMI", "country": "CH", "sector": "MedTech", "strategicAIInterest": "Hearing care AI, connected devices"},
+    {"name": "Swiss Life", "index": "SMI", "country": "CH", "sector": "Insurance", "strategicAIInterest": "Pension planning, real estate investment"},
+    {"name": "Swiss Re", "index": "SMI", "country": "CH", "sector": "Insurance", "strategicAIInterest": "Reinsurance risk knowledge graphs"},
+    {"name": "Swisscom", "index": "SMI", "country": "CH", "sector": "Telecom", "strategicAIInterest": "Network operations, cybersecurity, cloud"},
+    {"name": "UBS", "index": "SMI", "country": "CH", "sector": "Banking", "strategicAIInterest": "Wealth management AI, digital banking"},
+    {"name": "Zurich Insurance", "index": "SMI", "country": "CH", "sector": "Insurance", "strategicAIInterest": "Commercial risk insurance, claims AI"},
+    {"name": "ABN AMRO", "index": "AEX", "country": "NL", "sector": "Banking", "strategicAIInterest": "Sustainable finance, digital banking"},
+    {"name": "Adyen", "index": "AEX", "country": "NL", "sector": "Fintech", "strategicAIInterest": "Payments platform, fraud detection"},
+    {"name": "Ahold Delhaize", "index": "AEX", "country": "NL", "sector": "Retail", "strategicAIInterest": "Supermarket logistics, retail media"},
+    {"name": "AkzoNobel", "index": "AEX", "country": "NL", "sector": "Chemicals", "strategicAIInterest": "Paints/Coatings, color matching AI"},
+    {"name": "ASM International", "index": "AEX", "country": "NL", "sector": "Tech", "strategicAIInterest": "Wafer processing equipment"},
+    {"name": "ASML", "index": "AEX", "country": "NL", "sector": "Tech", "strategicAIInterest": "Semiconductor lithography, metrology"},
+    {"name": "ASR Nederland", "index": "AEX", "country": "NL", "sector": "Insurance", "strategicAIInterest": "Insurance data processing"},
+    {"name": "Besi", "index": "AEX", "country": "NL", "sector": "Tech", "strategicAIInterest": "Semiconductor assembly equipment"},
+    {"name": "DSM-Firmenich", "index": "AEX", "country": "NL", "sector": "Nutrition", "strategicAIInterest": "Bioscience, nutritional ingredients"},
+    {"name": "Exor", "index": "AEX", "country": "NL", "sector": "Holding", "strategicAIInterest": "Investment in Ferrari, Stellantis, CNH"},
+    {"name": "Heineken", "index": "AEX", "country": "NL", "sector": "Beverage", "strategicAIInterest": "B2B e-commerce, connected breweries"},
+    {"name": "IMCD", "index": "AEX", "country": "NL", "sector": "Logistics", "strategicAIInterest": "Chemical distribution"},
+    {"name": "ING Group", "index": "AEX", "country": "NL", "sector": "Banking", "strategicAIInterest": "Digital banking, fintech partnerships"},
+    {"name": "KPN", "index": "AEX", "country": "NL", "sector": "Telecom", "strategicAIInterest": "Fiber network, IoT connectivity"},
+    {"name": "NN Group", "index": "AEX", "country": "NL", "sector": "Insurance", "strategicAIInterest": "Asset management, insurance"},
+    {"name": "Philips", "index": "AEX", "country": "NL", "sector": "MedTech", "strategicAIInterest": "Health technology, patient monitoring AI"},
+    {"name": "Prosus", "index": "AEX", "country": "NL", "sector": "Tech/Inv", "strategicAIInterest": "Consumer internet investments (Tencent)"},
+    {"name": "Randstad", "index": "AEX", "country": "NL", "sector": "HR", "strategicAIInterest": "Recruitment AI, talent matching"},
+    {"name": "Universal Music", "index": "AEX", "country": "NL", "sector": "Media", "strategicAIInterest": "Music streaming data, artist analytics"},
+    {"name": "Wolters Kluwer", "index": "AEX", "country": "NL", "sector": "Professional", "strategicAIInterest": "Expert solutions, tax/legal AI"},
+    {"name": "1KOMMA5°", "index": "Unicorn", "country": "DE", "sector": "Climate", "strategicAIInterest": "Energy management systems, smart grid"},
+    {"name": "Alan", "index": "Unicorn", "country": "FR", "sector": "Insurtech", "strategicAIInterest": "Health insurance, preventative health AI"},
+    {"name": "Algolia", "index": "Unicorn", "country": "FR", "sector": "Tech", "strategicAIInterest": "Search-as-a-Service, AI recommendation"},
+    {"name": "Back Market", "index": "Unicorn", "country": "FR", "sector": "E-commerce", "strategicAIInterest": "Refurbished electronics marketplace"},
+    {"name": "Bitpanda", "index": "Unicorn", "country": "AT", "sector": "Fintech", "strategicAIInterest": "Crypto trading, investment platform"},
+    {"name": "BlaBlaCar", "index": "Unicorn", "country": "FR", "sector": "Mobility", "strategicAIInterest": "Carpooling, bus network optimization"},
+    {"name": "Bolt", "index": "Unicorn", "country": "EE", "sector": "Mobility", "strategicAIInterest": "Ride-hailing, food delivery logistics"},
+    {"name": "Celonis", "index": "Unicorn", "country": "DE", "sector": "SaaS", "strategicAIInterest": "Process mining, execution management"},
+    {"name": "Checkout.com", "index": "Unicorn", "country": "UK", "sector": "Fintech", "strategicAIInterest": "Payments, fraud detection"},
+    {"name": "ContentSquare", "index": "Unicorn", "country": "FR", "sector": "SaaS", "strategicAIInterest": "Digital experience analytics, UX AI"},
+    {"name": "DeepL", "index": "Unicorn", "country": "DE", "sector": "AI", "strategicAIInterest": "AI translation, writing assistants"},
+    {"name": "Deliveroo", "index": "Unicorn", "country": "UK", "sector": "Logistics", "strategicAIInterest": "Food delivery, rider dispatch algorithms"},
+    {"name": "Doctolib", "index": "Unicorn", "country": "FR", "sector": "Health", "strategicAIInterest": "Booking platform, telemedicine"},
+    {"name": "Enpal", "index": "Unicorn", "country": "DE", "sector": "Climate", "strategicAIInterest": "Solar leasing, energy IoT"},
+    {"name": "Flix", "index": "Unicorn", "country": "DE", "sector": "Mobility", "strategicAIInterest": "Bus/Train network planning"},
+    {"name": "Forto", "index": "Unicorn", "country": "DE", "sector": "Logistics", "strategicAIInterest": "Digital freight forwarding"},
+    {"name": "GetYourGuide", "index": "Unicorn", "country": "DE", "sector": "Travel", "strategicAIInterest": "Travel experiences, booking AI"},
+    {"name": "Glovo", "index": "Unicorn", "country": "ES", "sector": "Logistics", "strategicAIInterest": "On-demand delivery"},
+    {"name": "Helsing", "index": "Unicorn", "country": "DE", "sector": "Defense", "strategicAIInterest": "Defense AI, sensor fusion"},
+    {"name": "Hopin", "index": "Unicorn", "country": "UK", "sector": "Tech", "strategicAIInterest": "Virtual events (pivoting to video tech)"},
+    {"name": "Klarna", "index": "Unicorn", "country": "SE", "sector": "Fintech", "strategicAIInterest": "BNPL, shopping assistant AI"},
+    {"name": "Ledger", "index": "Unicorn", "country": "FR", "sector": "Crypto", "strategicAIInterest": "Hardware wallets, crypto security"},
+    {"name": "Mambu", "index": "Unicorn", "country": "DE", "sector": "Fintech", "strategicAIInterest": "Core banking platform"},
+    {"name": "ManoMano", "index": "Unicorn", "country": "FR", "sector": "E-commerce", "strategicAIInterest": "DIY marketplace, home improvement"},
+    {"name": "MessageBird", "index": "Unicorn", "country": "NL", "sector": "Telecom", "strategicAIInterest": "Omnichannel communication API"},
+    {"name": "Mirakl", "index": "Unicorn", "country": "FR", "sector": "E-commerce", "strategicAIInterest": "Marketplace platform SaaS"},
+    {"name": "Mistral AI", "index": "Unicorn", "country": "FR", "sector": "AI", "strategicAIInterest": "Foundational LLMs"},
+    {"name": "Mollie", "index": "Unicorn", "country": "NL", "sector": "Fintech", "strategicAIInterest": "Payment processing"},
+    {"name": "Monzo", "index": "Unicorn", "country": "UK", "sector": "Fintech", "strategicAIInterest": "Neobank, personal finance AI"},
+    {"name": "N26", "index": "Unicorn", "country": "DE", "sector": "Fintech", "strategicAIInterest": "Mobile banking"},
+    {"name": "n8n", "index": "Unicorn", "country": "DE", "sector": "Tech", "strategicAIInterest": "Workflow automation"},
+    {"name": "Northvolt", "index": "Unicorn", "country": "SE", "sector": "Industrial", "strategicAIInterest": "Battery manufacturing"},
+    {"name": "OakNorth", "index": "Unicorn", "country": "UK", "sector": "Fintech", "strategicAIInterest": "SME lending, credit risk AI"},
+    {"name": "OutSystems", "index": "Unicorn", "country": "PT", "sector": "Tech", "strategicAIInterest": "Low-code application development"},
+    {"name": "Owkin", "index": "Unicorn", "country": "FR", "sector": "Health", "strategicAIInterest": "AI for medical research, federated learning"},
+    {"name": "PayFit", "index": "Unicorn", "country": "FR", "sector": "HR", "strategicAIInterest": "Payroll automation"},
+    {"name": "Personio", "index": "Unicorn", "country": "DE", "sector": "HR", "strategicAIInterest": "HR operating system for SMEs"},
+    {"name": "Pigment", "index": "Unicorn", "country": "FR", "sector": "SaaS", "strategicAIInterest": "Business planning, financial modeling"},
+    {"name": "Pipedrive", "index": "Unicorn", "country": "EE", "sector": "SaaS", "strategicAIInterest": "CRM, sales automation"},
+    {"name": "Qonto", "index": "Unicorn", "country": "FR", "sector": "Fintech", "strategicAIInterest": "SME banking"},
+    {"name": "Rapyd", "index": "Unicorn", "country": "UK", "sector": "Fintech", "strategicAIInterest": "Fintech-as-a-service"},
+    {"name": "Revolut", "index": "Unicorn", "country": "UK", "sector": "Fintech", "strategicAIInterest": "Global financial superapp"},
+    {"name": "Sennder", "index": "Unicorn", "country": "DE", "sector": "Logistics", "strategicAIInterest": "Digital road freight forwarding"},
+    {"name": "Solaris", "index": "Unicorn", "country": "DE", "sector": "Fintech", "strategicAIInterest": "Banking-as-a-service"},
+    {"name": "Sorare", "index": "Unicorn", "country": "FR", "sector": "Gaming", "strategicAIInterest": "NFT fantasy sports"},
+    {"name": "Spotify", "index": "Unicorn", "country": "SE", "sector": "Media", "strategicAIInterest": "Audio streaming, recommendation AI"},
+    {"name": "Staffbase", "index": "Unicorn", "country": "DE", "sector": "SaaS", "strategicAIInterest": "Employee communication app"},
+    {"name": "Starling Bank", "index": "Unicorn", "country": "UK", "sector": "Fintech", "strategicAIInterest": "Digital bank"},
+    {"name": "SumUp", "index": "Unicorn", "country": "UK", "sector": "Fintech", "strategicAIInterest": "Point-of-sale payments"},
+    {"name": "Synthesia", "index": "Unicorn", "country": "UK", "sector": "AI", "strategicAIInterest": "AI video generation avatars"},
+    {"name": "Taxfix", "index": "Unicorn", "country": "DE", "sector": "Fintech", "strategicAIInterest": "Tax filing app"},
+    {"name": "Tines", "index": "Unicorn", "country": "IE", "sector": "Security", "strategicAIInterest": "Security automation workflow"},
+    {"name": "Trade Republic", "index": "Unicorn", "country": "DE", "sector": "Fintech", "strategicAIInterest": "Neobroker, savings plans"},
+    {"name": "TravelPerk", "index": "Unicorn", "country": "ES", "sector": "Travel", "strategicAIInterest": "Corporate travel management"},
+    {"name": "UiPath", "index": "Unicorn", "country": "RO", "sector": "SaaS", "strategicAIInterest": "RPA, automation"},
+    {"name": "Veeam", "index": "Unicorn", "country": "CH", "sector": "Tech", "strategicAIInterest": "Data backup and recovery"},
+    {"name": "Veriff", "index": "Unicorn", "country": "EE", "sector": "Tech", "strategicAIInterest": "Identity verification AI"},
+    {"name": "Vestiaire Collective", "index": "Unicorn", "country": "FR", "sector": "E-commerce", "strategicAIInterest": "Second-hand luxury fashion"},
+    {"name": "Vinted", "index": "Unicorn", "country": "LT", "sector": "E-commerce", "strategicAIInterest": "Second-hand clothing marketplace"},
+    {"name": "Volocopter", "index": "Unicorn", "country": "DE", "sector": "Mobility", "strategicAIInterest": "Urban air mobility (eVTOL)"},
+    {"name": "Wefox", "index": "Unicorn", "country": "DE", "sector": "Insurtech", "strategicAIInterest": "Digital insurance"},
+    {"name": "Wise", "index": "Unicorn", "country": "UK", "sector": "Fintech", "strategicAIInterest": "Cross-border money transfer"},
+    {"name": "Wolt", "index": "Unicorn", "country": "FI", "sector": "Logistics", "strategicAIInterest": "Food delivery"},
+    {"name": "Younited", "index": "Unicorn", "country": "FR", "sector": "Fintech", "strategicAIInterest": "Instant credit provider"},
+    {"name": "Zepz", "index": "Unicorn", "country": "UK", "sector": "Fintech", "strategicAIInterest": "Money transfer"}
   ]
 }

@@ -51,8 +51,10 @@ export interface GoogleSearchItem {
 // Config file types
 export interface TargetCompany {
   name: string;
-  priority: number;
-  notes?: string;
+  index: string; // DAX, MDAX, CAC40, FTSE100, SMI, AEX, Unicorn
+  country: string; // ISO country code (DE, FR, UK, CH, NL, etc.)
+  sector: string;
+  strategicAIInterest: string;
 }
 
 export interface CompaniesConfig {
