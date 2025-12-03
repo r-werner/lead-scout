@@ -560,7 +560,8 @@
 
     async function loadLeads() {
       try {
-        const response = await fetch('output/leads.json');
+        // Add cache-busting to always get fresh data
+        const response = await fetch(`output/leads.json?t=${Date.now()}`);
 
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
