@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "search": "tsx src/index.ts",
-    "export-csv": "tsx src/export-csv.ts"
+    "export-csv": "tsx src/export-csv.ts",
+    "view": "npx serve output -l 3000 -s"
   },
   "dependencies": {
     "dotenv": "^16.4.0"
