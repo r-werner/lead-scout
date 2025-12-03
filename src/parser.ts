@@ -25,10 +25,24 @@ function extractImageUrl(item: GoogleSearchItem): string | null {
 
 /**
  * Find which topic keywords appear in the text (case-insensitive)
+ * Only matches complete phrases, not partial words
  */
 function findMatchedTopics(text: string, topics: string[]): string[] {
   const lowerText = text.toLowerCase();
-  return topics.filter((topic) => lowerText.includes(topic.toLowerCase()));
+  return topics.filter((topic) => {
+    const lowerTopic = topic.toLowerCase();
+    // Use word boundary matching to avoid partial matches
+    // e.g., "Agent" shouldn't match inside "reagent"
+    const regex = new RegExp(`\\b${escapeRegex(lowerTopic)}\\b`, 'i');
+    return regex.test(lowerText);
+  });
+}
+
+/**
+ * Escape special regex characters
+ */
+function escapeRegex(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 /**
@@ -88,9 +102,9 @@ export function parseSearchResult(
   // Extract image URL from pagemap
   const imageUrl = extractImageUrl(item);
 
-  // Find which topics match in title + snippet (combined search)
-  const searchText = `${title} ${snippet || ''}`;
-  const matchedTopics = findMatchedTopics(searchText, topics);
+  // Find which topics match in SNIPPET ONLY (stricter - must be visible)
+  // The snippet is what Google shows and what the user sees in our viewer
+  const matchedTopics = findMatchedTopics(snippet || '', topics);
 
   // Extract location from snippet
   const location = extractLocation(snippet || '');

@@ -6,6 +6,7 @@
   "scripts": {
     "search": "tsx src/index.ts",
     "export-csv": "tsx src/export-csv.ts",
+    "cleanup": "tsx src/cleanup-leads.ts",
     "view": "npx serve . -l 3000"
   },
   "dependencies": {
