@@ -6,7 +6,7 @@
   "scripts": {
     "search": "tsx src/index.ts",
     "export-csv": "tsx src/export-csv.ts",
-    "view": "npx serve output -l 3000 -s"
+    "view": "npx serve output -l 3000"
   },
   "dependencies": {
     "dotenv": "^16.4.0"
