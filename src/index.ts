@@ -41,7 +41,7 @@ async function main() {
   console.log('');
 
   // Determine search provider
-  const provider: SearchProvider = (process.env.SEARCH_PROVIDER as SearchProvider) || 'scraper';
+  const provider: SearchProvider = (process.env.SEARCH_PROVIDER as SearchProvider) || 'google-cse';
   const apiKey = process.env.GOOGLE_API_KEY;
   const cseId = process.env.GOOGLE_CSE_ID;
 
