@@ -1,106 +1,381 @@
 {
-  "description": "Target companies for LinkedIn X-Ray search. Edit this file to add/remove companies.",
-  "lastUpdated": "2024-01-15",
+  "description": "Target companies for LinkedIn X-Ray search. German-focused with priority based on reachability from German startup. Priority 1 = German startups/tech (easiest), Priority 4 = F100 giants (hardest).",
+  "lastUpdated": "2024-12-03",
   "companies": [
     {
-      "name": "Microsoft",
+      "name": "Celonis",
       "priority": 1,
-      "notes": "Major AI investments, Copilot, Azure AI"
+      "notes": "German unicorn, process mining + AI"
     },
     {
-      "name": "Google",
+      "name": "DeepL",
       "priority": 1,
-      "notes": "DeepMind, Gemini, Vertex AI"
+      "notes": "German AI translation leader"
     },
     {
-      "name": "Salesforce",
+      "name": "Aleph Alpha",
       "priority": 1,
-      "notes": "Einstein AI, Agentforce"
+      "notes": "German LLM company, sovereign AI"
     },
     {
-      "name": "OpenAI",
+      "name": "Personio",
       "priority": 1,
-      "notes": "GPT, ChatGPT, Assistants API"
+      "notes": "German HR tech unicorn"
     },
     {
-      "name": "Anthropic",
+      "name": "SAP",
       "priority": 1,
-      "notes": "Claude, Constitutional AI"
+      "notes": "DAX - Enterprise AI, Joule assistant"
     },
     {
-      "name": "Meta",
+      "name": "Siemens",
+      "priority": 1,
+      "notes": "DAX - Industrial AI, digital industries"
+    },
+    {
+      "name": "N26",
+      "priority": 1,
+      "notes": "German fintech, AI banking"
+    },
+    {
+      "name": "Trade Republic",
+      "priority": 1,
+      "notes": "German fintech, trading AI"
+    },
+    {
+      "name": "SumUp",
+      "priority": 1,
+      "notes": "German fintech, payment AI"
+    },
+    {
+      "name": "Contentful",
+      "priority": 1,
+      "notes": "Berlin-based headless CMS"
+    },
+    {
+      "name": "Mambu",
+      "priority": 1,
+      "notes": "Berlin-based banking tech"
+    },
+    {
+      "name": "GetYourGuide",
+      "priority": 1,
+      "notes": "Berlin travel tech unicorn"
+    },
+    {
+      "name": "Forto",
+      "priority": 1,
+      "notes": "Berlin logistics tech"
+    },
+    {
+      "name": "Wefox",
+      "priority": 1,
+      "notes": "Berlin insurtech"
+    },
+    {
+      "name": "Staffbase",
+      "priority": 1,
+      "notes": "German employee communications"
+    },
+    {
+      "name": "Adjust",
+      "priority": 1,
+      "notes": "Berlin mobile analytics"
+    },
+    {
+      "name": "Deutsche Telekom",
       "priority": 2,
-      "notes": "LLaMA, AI Research"
+      "notes": "DAX - Telecom AI, T-Systems"
     },
     {
-      "name": "Amazon",
+      "name": "Mercedes-Benz",
       "priority": 2,
-      "notes": "AWS AI, Bedrock, Alexa"
+      "notes": "DAX - Automotive AI, autonomous driving"
     },
     {
-      "name": "Databricks",
+      "name": "BMW",
       "priority": 2,
-      "notes": "Data + AI platform, MLflow"
+      "notes": "DAX - Automotive AI, connected cars"
     },
     {
-      "name": "Snowflake",
+      "name": "Volkswagen",
       "priority": 2,
-      "notes": "Data cloud, Cortex AI"
+      "notes": "DAX - CARIAD software, automotive AI"
     },
     {
-      "name": "Datadog",
+      "name": "Porsche",
       "priority": 2,
-      "notes": "Observability, AI ops"
+      "notes": "DAX - Digital services, automotive AI"
     },
     {
-      "name": "Stripe",
+      "name": "Delivery Hero",
       "priority": 2,
-      "notes": "Fintech, AI fraud detection"
+      "notes": "DAX - Berlin, logistics AI"
     },
     {
-      "name": "Docusign",
+      "name": "Zalando",
       "priority": 2,
-      "notes": "Hiring for Agentic AI roles"
+      "notes": "DAX - Berlin, fashion AI/ML"
     },
     {
-      "name": "ServiceNow",
+      "name": "Infineon",
       "priority": 2,
-      "notes": "Enterprise AI workflows"
+      "notes": "DAX - AI chips, edge computing"
     },
     {
-      "name": "Workday",
+      "name": "Deutsche Bank",
       "priority": 2,
-      "notes": "HR AI, enterprise"
+      "notes": "DAX - Finance AI, digital transformation"
     },
     {
-      "name": "Adobe",
+      "name": "Allianz",
       "priority": 2,
-      "notes": "Firefly, creative AI"
+      "notes": "DAX - Insurance AI, Allianz X"
     },
     {
-      "name": "Notion",
-      "priority": 3,
-      "notes": "AI features, productivity"
+      "name": "Munich Re",
+      "priority": 2,
+      "notes": "DAX - Insurance AI, risk analytics"
     },
     {
-      "name": "Figma",
-      "priority": 3,
-      "notes": "Design AI"
+      "name": "Deutsche Post DHL",
+      "priority": 2,
+      "notes": "DAX - Logistics AI, automation"
+    },
+    {
+      "name": "Merck KGaA",
+      "priority": 2,
+      "notes": "DAX - Life science AI, pharma"
+    },
+    {
+      "name": "Commerzbank",
+      "priority": 2,
+      "notes": "DAX - Banking AI"
+    },
+    {
+      "name": "Deutsche Börse",
+      "priority": 2,
+      "notes": "DAX - Trading AI, market data"
+    },
+    {
+      "name": "HelloFresh",
+      "priority": 2,
+      "notes": "MDAX - Berlin, supply chain AI"
+    },
+    {
+      "name": "TeamViewer",
+      "priority": 2,
+      "notes": "MDAX - Remote access, enterprise AI"
+    },
+    {
+      "name": "Scout24",
+      "priority": 2,
+      "notes": "MDAX - Real estate/auto AI"
+    },
+    {
+      "name": "AUTO1 Group",
+      "priority": 2,
+      "notes": "MDAX - Berlin, auto marketplace AI"
+    },
+    {
+      "name": "Nemetschek",
+      "priority": 2,
+      "notes": "MDAX - Construction software, BIM AI"
+    },
+    {
+      "name": "Software AG",
+      "priority": 2,
+      "notes": "MDAX - Enterprise software, IoT"
+    },
+    {
+      "name": "CompuGroup Medical",
+      "priority": 2,
+      "notes": "MDAX - Health IT, medical AI"
+    },
+    {
+      "name": "CANCOM",
+      "priority": 2,
+      "notes": "MDAX - IT services, cloud AI"
+    },
+    {
+      "name": "Carl Zeiss Meditec",
+      "priority": 2,
+      "notes": "MDAX - Medical imaging AI"
+    },
+    {
+      "name": "Evotec",
+      "priority": 2,
+      "notes": "MDAX - Drug discovery AI"
+    },
+    {
+      "name": "Aixtron",
+      "priority": 2,
+      "notes": "MDAX - Semiconductor equipment"
+    },
+    {
+      "name": "Jenoptik",
+      "priority": 2,
+      "notes": "MDAX - Photonics, automation"
+    },
+    {
+      "name": "FlixBus",
+      "priority": 2,
+      "notes": "German mobility unicorn"
+    },
+    {
+      "name": "Mistral AI",
+      "priority": 2,
+      "notes": "Paris - European LLM leader"
+    },
+    {
+      "name": "Dataiku",
+      "priority": 2,
+      "notes": "Paris - Enterprise AI platform"
     },
     {
       "name": "Hugging Face",
-      "priority": 3,
-      "notes": "Open source AI hub"
+      "priority": 2,
+      "notes": "Open source AI hub, Paris roots"
     },
     {
-      "name": "Scale AI",
+      "name": "UiPath",
+      "priority": 2,
+      "notes": "European RPA, agentic automation"
+    },
+    {
+      "name": "Databricks",
       "priority": 3,
-      "notes": "Data labeling, enterprise AI"
+      "notes": "US - Data + AI platform, MLflow"
+    },
+    {
+      "name": "Snowflake",
+      "priority": 3,
+      "notes": "US - Data cloud, Cortex AI"
+    },
+    {
+      "name": "ServiceNow",
+      "priority": 3,
+      "notes": "US - Enterprise AI workflows"
+    },
+    {
+      "name": "Workday",
+      "priority": 3,
+      "notes": "US - HR AI, enterprise"
+    },
+    {
+      "name": "Salesforce",
+      "priority": 3,
+      "notes": "US - Einstein AI, Agentforce"
+    },
+    {
+      "name": "OpenAI",
+      "priority": 3,
+      "notes": "US - GPT, ChatGPT, Assistants API"
+    },
+    {
+      "name": "Anthropic",
+      "priority": 3,
+      "notes": "US - Claude, Constitutional AI"
     },
     {
       "name": "Cohere",
       "priority": 3,
-      "notes": "Enterprise LLMs"
+      "notes": "Canada - Enterprise LLMs"
+    },
+    {
+      "name": "Scale AI",
+      "priority": 3,
+      "notes": "US - Data labeling, enterprise AI"
+    },
+    {
+      "name": "Stripe",
+      "priority": 3,
+      "notes": "US - Fintech, AI fraud detection"
+    },
+    {
+      "name": "Docusign",
+      "priority": 3,
+      "notes": "US - Hiring for Agentic AI roles"
+    },
+    {
+      "name": "Datadog",
+      "priority": 3,
+      "notes": "US - Observability, AI ops"
+    },
+    {
+      "name": "Adobe",
+      "priority": 3,
+      "notes": "US - Firefly, creative AI"
+    },
+    {
+      "name": "Notion",
+      "priority": 3,
+      "notes": "US - AI features, productivity"
+    },
+    {
+      "name": "Figma",
+      "priority": 3,
+      "notes": "US - Design AI"
+    },
+    {
+      "name": "Atlassian",
+      "priority": 3,
+      "notes": "US - Dev tools AI, Rovo"
+    },
+    {
+      "name": "HashiCorp",
+      "priority": 3,
+      "notes": "US - Infrastructure automation"
+    },
+    {
+      "name": "MongoDB",
+      "priority": 3,
+      "notes": "US - Database, vector search"
+    },
+    {
+      "name": "Elastic",
+      "priority": 3,
+      "notes": "US - Search AI, observability"
+    },
+    {
+      "name": "Microsoft",
+      "priority": 4,
+      "notes": "F100 - Copilot, Azure AI (harder to reach)"
+    },
+    {
+      "name": "Google",
+      "priority": 4,
+      "notes": "F100 - DeepMind, Gemini (harder to reach)"
+    },
+    {
+      "name": "Meta",
+      "priority": 4,
+      "notes": "F100 - LLaMA, AI Research (harder to reach)"
+    },
+    {
+      "name": "Amazon",
+      "priority": 4,
+      "notes": "F100 - AWS AI, Bedrock (harder to reach)"
+    },
+    {
+      "name": "Apple",
+      "priority": 4,
+      "notes": "F100 - Apple Intelligence (harder to reach)"
+    },
+    {
+      "name": "Nvidia",
+      "priority": 4,
+      "notes": "F100 - AI hardware, NeMo (harder to reach)"
+    },
+    {
+      "name": "IBM",
+      "priority": 4,
+      "notes": "F100 - WatsonX, enterprise AI (harder to reach)"
+    },
+    {
+      "name": "Oracle",
+      "priority": 4,
+      "notes": "F100 - Cloud AI, enterprise (harder to reach)"
     }
   ]
 }
