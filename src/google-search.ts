@@ -14,6 +14,7 @@ export async function search(
   url.searchParams.set('key', apiKey);
   url.searchParams.set('cx', cseId);
   url.searchParams.set('q', query);
+  url.searchParams.set('num', '10'); // Request maximum results per query
 
   const response = await fetch(url.toString());
 

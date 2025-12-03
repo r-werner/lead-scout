@@ -102,9 +102,10 @@ export function parseSearchResult(
   // Extract image URL from pagemap
   const imageUrl = extractImageUrl(item);
 
-  // Find which topics match in SNIPPET ONLY (stricter - must be visible)
-  // The snippet is what Google shows and what the user sees in our viewer
-  const matchedTopics = findMatchedTopics(snippet || '', topics);
+  // Find which topics match in TITLE + SNIPPET (combined)
+  // Title often contains relevant keywords that aren't in the snippet
+  const searchText = `${title} ${snippet || ''}`;
+  const matchedTopics = findMatchedTopics(searchText, topics);
 
   // Extract location from snippet
   const location = extractLocation(snippet || '');
@@ -178,16 +179,23 @@ export function parseSearchResults(
 ): Lead[] {
   const { queryUsed, topics = [], requireTopicMatch = false } = options;
   const leads: Lead[] = [];
+  const filtered: string[] = [];
 
   for (const item of items) {
     const lead = parseSearchResult(item, queryUsed, topics);
     if (lead) {
       // If filtering is enabled, only include leads that match at least one topic
       if (requireTopicMatch && lead.matchedTopics.length === 0) {
+        filtered.push(`${lead.name} @ ${lead.company}`);
         continue; // Skip - no topic keywords found
       }
       leads.push(lead);
     }
+  }
+
+  // Log filtered results for debugging
+  if (filtered.length > 0) {
+    console.log(`    Filtered out (no topic match): ${filtered.join(', ')}`);
   }
 
   return leads;

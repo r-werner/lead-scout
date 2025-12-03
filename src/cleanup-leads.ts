@@ -42,7 +42,7 @@ function main() {
   const removedLeads: Lead[] = [];
 
   for (const lead of leads) {
-    // Re-check topic matches in title (from role) + snippet
+    // Re-check topic matches in role + snippet (role often contains title keywords)
     const searchText = `${lead.role} ${lead.snippet}`;
     const matchedTopics = findMatchedTopics(searchText, topics);
 
