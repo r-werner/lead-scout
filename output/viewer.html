@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lead Scout - Results Viewer</title>
+  <title>Lead Scout - Results</title>
   <style>
     * {
       margin: 0;
@@ -12,157 +12,139 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0d0d0d;
       min-height: 100vh;
-      color: #e4e4e4;
+      color: #e0e0e0;
     }
 
     .container {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
     }
 
     header {
-      text-align: center;
-      padding: 40px 20px;
+      padding: 30px 0;
+      border-bottom: 1px solid #222;
       margin-bottom: 30px;
     }
 
     header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 10px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 5px;
     }
 
     header p {
-      color: #888;
-      font-size: 1.1rem;
+      color: #666;
+      font-size: 0.9rem;
     }
 
     .stats {
       display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin: 30px 0;
+      gap: 30px;
+      margin: 20px 0 30px;
       flex-wrap: wrap;
     }
 
-    .stat-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 20px 40px;
-      text-align: center;
-    }
-
-    .stat-card .number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #00d4ff;
-    }
-
-    .stat-card .label {
+    .stat {
       color: #888;
-      font-size: 0.9rem;
-      margin-top: 5px;
+      font-size: 0.85rem;
+    }
+
+    .stat strong {
+      color: #fff;
+      font-weight: 600;
     }
 
     .controls {
       display: flex;
-      gap: 15px;
-      margin-bottom: 30px;
+      gap: 12px;
+      margin-bottom: 25px;
       flex-wrap: wrap;
-      justify-content: center;
     }
 
     .search-box {
       flex: 1;
-      max-width: 400px;
-      position: relative;
+      min-width: 200px;
+      max-width: 350px;
     }
 
     .search-box input {
       width: 100%;
-      padding: 12px 20px 12px 45px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 14px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #1a1a1a;
       color: #fff;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .search-box input::placeholder {
-      color: #666;
+      color: #555;
     }
 
-    .search-box::before {
-      content: "🔍";
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
+    .search-box input:focus {
+      outline: none;
+      border-color: #444;
     }
 
     select {
-      padding: 12px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 14px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #1a1a1a;
       color: #fff;
-      font-size: 1rem;
+      font-size: 0.9rem;
       cursor: pointer;
     }
 
-    select option {
-      background: #1a1a2e;
+    select:focus {
+      outline: none;
+      border-color: #444;
     }
 
-    .leads-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-      gap: 20px;
+    select option {
+      background: #1a1a1a;
+    }
+
+    .leads-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     .lead-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 24px;
-      transition: all 0.3s ease;
+      background: #141414;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 16px;
+      align-items: start;
+      transition: background 0.15s;
     }
 
     .lead-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0, 212, 255, 0.3);
-      box-shadow: 0 10px 40px rgba(0, 212, 255, 0.1);
-    }
-
-    .lead-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 16px;
+      background: #1a1a1a;
     }
 
     .avatar {
-      width: 72px;
-      height: 72px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
+      overflow: hidden;
+      background: #333;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #fff;
-      flex-shrink: 0;
-      overflow: hidden;
-      background: #444;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #888;
     }
 
     .avatar img {
@@ -171,216 +153,174 @@
       object-fit: cover;
     }
 
-    .avatar-initials {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lead-info {
-      flex: 1;
+    .lead-main {
       min-width: 0;
     }
 
-    .lead-info h3 {
-      font-size: 1.2rem;
+    .lead-name {
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 4px;
       color: #fff;
+      margin-bottom: 4px;
     }
 
-    .lead-info h3 a {
-      color: #4a9eff;
+    .lead-name a {
+      color: inherit;
       text-decoration: none;
     }
 
-    .lead-info h3 a:hover {
+    .lead-name a:hover {
       text-decoration: underline;
     }
 
-    .lead-info .role {
-      color: #00d4ff;
+    .lead-role {
+      color: #999;
       font-size: 0.95rem;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
-    .lead-info .company {
+    .lead-company {
       color: #888;
       font-size: 0.9rem;
+      margin-bottom: 6px;
     }
 
-    .lead-meta {
+    .lead-location {
+      color: #666;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    .lead-topics {
       display: flex;
-      gap: 10px;
-      margin: 16px 0;
+      gap: 6px;
       flex-wrap: wrap;
     }
 
-    .badge {
-      padding: 4px 10px;
-      border-radius: 20px;
+    .topic-tag {
+      padding: 3px 8px;
+      background: #252525;
+      border-radius: 4px;
       font-size: 0.75rem;
-      font-weight: 500;
-    }
-
-    .badge.high {
-      background: rgba(34, 197, 94, 0.2);
-      color: #22c55e;
-    }
-
-    .badge.medium {
-      background: rgba(234, 179, 8, 0.2);
-      color: #eab308;
-    }
-
-    .badge.low {
-      background: rgba(239, 68, 68, 0.2);
-      color: #ef4444;
-    }
-
-    .badge.company-badge {
-      background: rgba(139, 92, 246, 0.2);
-      color: #a78bfa;
-    }
-
-    .badge.topic-badge {
-      background: rgba(0, 212, 255, 0.2);
-      color: #00d4ff;
-    }
-
-    .snippet {
       color: #aaa;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin: 12px 0;
-      padding: 12px;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      border-left: 3px solid #444;
-    }
-
-    /* Highlighted keywords in snippet - Google style */
-    .snippet b, .snippet strong {
-      color: #fff;
-      font-weight: 600;
-      background: rgba(0, 212, 255, 0.15);
-      padding: 1px 4px;
-      border-radius: 3px;
     }
 
     .lead-actions {
       display: flex;
-      gap: 10px;
-      margin-top: 16px;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
     }
 
     .btn {
-      flex: 1;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
       font-weight: 500;
       text-decoration: none;
       text-align: center;
-      transition: all 0.2s ease;
+      transition: all 0.15s;
       cursor: pointer;
       border: none;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: linear-gradient(90deg, #0077b5, #00a0dc);
+      background: #2563eb;
       color: #fff;
     }
 
     .btn-primary:hover {
-      transform: scale(1.02);
-      box-shadow: 0 4px 15px rgba(0, 119, 181, 0.4);
+      background: #1d4ed8;
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #ccc;
+      background: transparent;
+      border: 1px solid #333;
+      color: #888;
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
+      border-color: #444;
+      color: #aaa;
+    }
+
+    .lead-meta {
+      font-size: 0.75rem;
+      color: #555;
+      margin-top: 4px;
     }
 
     .no-results {
       text-align: center;
       padding: 60px 20px;
-      color: #666;
+      color: #555;
     }
 
     .no-results h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #888;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #666;
+      font-weight: 500;
     }
 
     .loading {
       text-align: center;
       padding: 60px 20px;
-      color: #888;
+      color: #555;
     }
 
     .error {
-      text-align: center;
-      padding: 40px 20px;
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      border-radius: 12px;
+      padding: 30px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
       margin: 20px 0;
     }
 
     .error h3 {
-      color: #ef4444;
+      color: #e55;
       margin-bottom: 10px;
+      font-size: 1rem;
     }
 
     .error p {
       color: #888;
+      font-size: 0.9rem;
     }
 
     .error code {
       display: block;
       margin-top: 15px;
-      padding: 15px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 8px;
-      font-size: 0.85rem;
-      color: #ccc;
+      padding: 12px;
+      background: #0d0d0d;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: #888;
     }
 
     footer {
       text-align: center;
-      padding: 40px 20px;
-      color: #555;
-      font-size: 0.9rem;
-    }
-
-    .no-image {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 30px 20px;
+      color: #444;
+      font-size: 0.8rem;
     }
 
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.8rem;
+      .lead-card {
+        grid-template-columns: 48px 1fr;
+        gap: 12px;
       }
 
-      .stats {
-        gap: 20px;
+      .avatar {
+        width: 48px;
+        height: 48px;
       }
 
-      .stat-card {
-        padding: 15px 25px;
-      }
-
-      .leads-grid {
-        grid-template-columns: 1fr;
+      .lead-actions {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: flex-start;
       }
     }
   </style>
@@ -388,76 +328,41 @@
 <body>
   <div class="container">
     <header>
-      <h1>🎯 Lead Scout</h1>
+      <h1>Lead Scout</h1>
       <p>LinkedIn X-Ray Search Results</p>
     </header>
 
     <div class="stats" id="stats">
-      <div class="stat-card">
-        <div class="number" id="total-leads">-</div>
-        <div class="label">Total Leads</div>
-      </div>
-      <div class="stat-card">
-        <div class="number" id="companies-count">-</div>
-        <div class="label">Companies</div>
-      </div>
-      <div class="stat-card">
-        <div class="number" id="high-confidence">-</div>
-        <div class="label">High Confidence</div>
-      </div>
-      <div class="stat-card">
-        <div class="number" id="with-photos">-</div>
-        <div class="label">With Photos</div>
-      </div>
+      <div class="stat"><strong id="total-leads">-</strong> leads</div>
+      <div class="stat"><strong id="companies-count">-</strong> companies</div>
+      <div class="stat"><strong id="with-location">-</strong> with location</div>
     </div>
 
     <div class="controls">
       <div class="search-box">
-        <input type="text" id="search" placeholder="Search by name, role, or company...">
+        <input type="text" id="search" placeholder="Search name, role, company...">
       </div>
       <select id="company-filter">
         <option value="">All Companies</option>
       </select>
-      <select id="confidence-filter">
-        <option value="">All Confidence</option>
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-      </select>
       <select id="sort-by">
-        <option value="date-desc">Newest First</option>
-        <option value="date-asc">Oldest First</option>
+        <option value="date-desc">Newest</option>
+        <option value="date-asc">Oldest</option>
         <option value="name-asc">Name A-Z</option>
-        <option value="name-desc">Name Z-A</option>
         <option value="company-asc">Company A-Z</option>
       </select>
     </div>
 
     <div id="content">
-      <div class="loading">Loading leads...</div>
+      <div class="loading">Loading...</div>
     </div>
 
     <footer>
-      <p>Lead Scout - Module A: Google X-Ray Search</p>
+      Lead Scout - Module A
     </footer>
   </div>
 
   <script>
-    // Color palette for avatars based on company name
-    const colors = [
-      '#e74c3c', '#9b59b6', '#3498db', '#1abc9c', '#2ecc71',
-      '#f39c12', '#e67e22', '#16a085', '#8e44ad', '#2980b9',
-      '#27ae60', '#d35400', '#c0392b', '#7f8c8d', '#34495e'
-    ];
-
-    function getColorForName(name) {
-      let hash = 0;
-      for (let i = 0; i < name.length; i++) {
-        hash = name.charCodeAt(i) + ((hash << 5) - hash);
-      }
-      return colors[Math.abs(hash) % colors.length];
-    }
-
     function getInitials(name) {
       return name
         .split(' ')
@@ -467,15 +372,6 @@
         .slice(0, 2);
     }
 
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
-    }
-
     function escapeHtml(text) {
       const div = document.createElement('div');
       div.textContent = text;
@@ -483,52 +379,40 @@
     }
 
     function createLeadCard(lead) {
-      const color = getColorForName(lead.name);
       const initials = getInitials(lead.name);
 
-      // Use profile image if available, otherwise show initials
       const avatarContent = lead.imageUrl
-        ? `<img src="${escapeHtml(lead.imageUrl)}" alt="${escapeHtml(lead.name)}" onerror="this.parentElement.innerHTML='<div class=\\'avatar-initials\\' style=\\'background:${color}\\'>${initials}</div>'">`
-        : `<div class="avatar-initials" style="background:${color}">${initials}</div>`;
+        ? `<img src="${escapeHtml(lead.imageUrl)}" alt="" onerror="this.parentElement.innerHTML='${initials}'">`
+        : initials;
 
-      // Use htmlSnippet if available (has <b> tags for highlighting), otherwise plain snippet
-      const snippetHtml = lead.htmlSnippet || escapeHtml(lead.snippet || '');
+      const locationHtml = lead.location
+        ? `<div class="lead-location">${escapeHtml(lead.location)}</div>`
+        : '';
+
+      const topicsHtml = (lead.matchedTopics || []).length > 0
+        ? `<div class="lead-topics">${lead.matchedTopics.map(t => `<span class="topic-tag">${escapeHtml(t)}</span>`).join('')}</div>`
+        : '';
 
       return `
-        <div class="lead-card" data-company="${escapeHtml(lead.company)}" data-confidence="${lead.confidence}" data-name="${escapeHtml(lead.name)}" data-date="${lead.discoveredAt}">
-          <div class="lead-header">
-            <div class="avatar ${lead.imageUrl ? '' : 'no-image'}">
-              ${avatarContent}
-            </div>
-            <div class="lead-info">
-              <h3><a href="${escapeHtml(lead.linkedinUrl)}" target="_blank" rel="noopener">${escapeHtml(lead.name)}</a></h3>
-              <div class="role">${escapeHtml(lead.role)}</div>
-              <div class="company">${escapeHtml(lead.company)}</div>
-            </div>
+        <div class="lead-card">
+          <div class="avatar">${avatarContent}</div>
+          <div class="lead-main">
+            <div class="lead-name"><a href="${escapeHtml(lead.linkedinUrl)}" target="_blank" rel="noopener">${escapeHtml(lead.name)}</a></div>
+            <div class="lead-role">${escapeHtml(lead.role)}</div>
+            <div class="lead-company">${escapeHtml(lead.company)}</div>
+            ${locationHtml}
+            ${topicsHtml}
           </div>
-          <div class="lead-meta">
-            <span class="badge ${lead.confidence}">${lead.confidence} confidence</span>
-            <span class="badge company-badge">${escapeHtml(lead.company)}</span>
-            ${(lead.matchedTopics || []).map(topic => `<span class="badge topic-badge">${escapeHtml(topic)}</span>`).join('')}
-          </div>
-          ${snippetHtml ? `<div class="snippet">${snippetHtml}</div>` : ''}
           <div class="lead-actions">
-            <a href="${escapeHtml(lead.linkedinUrl)}" target="_blank" rel="noopener" class="btn btn-primary">
-              View on LinkedIn
-            </a>
-            <button class="btn btn-secondary" onclick="copyToClipboard('${escapeHtml(lead.linkedinUrl)}')">
-              Copy Link
-            </button>
+            <a href="${escapeHtml(lead.linkedinUrl)}" target="_blank" rel="noopener" class="btn btn-primary">View Profile</a>
+            <button class="btn btn-secondary" onclick="copyLink('${escapeHtml(lead.linkedinUrl)}')">Copy Link</button>
           </div>
         </div>
       `;
     }
 
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        // Brief visual feedback could be added here
-        alert('Link copied to clipboard!');
-      });
+    function copyLink(url) {
+      navigator.clipboard.writeText(url);
     }
 
     let allLeads = [];
@@ -547,7 +431,7 @@
       }
 
       content.innerHTML = `
-        <div class="leads-grid">
+        <div class="leads-list">
           ${leads.map(createLeadCard).join('')}
         </div>
       `;
@@ -555,15 +439,8 @@
 
     function updateStats(leads) {
       document.getElementById('total-leads').textContent = leads.length;
-
-      const companies = new Set(leads.map(l => l.company));
-      document.getElementById('companies-count').textContent = companies.size;
-
-      const highConfidence = leads.filter(l => l.confidence === 'high').length;
-      document.getElementById('high-confidence').textContent = highConfidence;
-
-      const withPhotos = leads.filter(l => l.imageUrl).length;
-      document.getElementById('with-photos').textContent = withPhotos;
+      document.getElementById('companies-count').textContent = new Set(leads.map(l => l.company)).size;
+      document.getElementById('with-location').textContent = leads.filter(l => l.location).length;
     }
 
     function populateCompanyFilter(leads) {
@@ -581,7 +458,6 @@
     function filterAndSort() {
       const searchTerm = document.getElementById('search').value.toLowerCase();
       const companyFilter = document.getElementById('company-filter').value;
-      const confidenceFilter = document.getElementById('confidence-filter').value;
       const sortBy = document.getElementById('sort-by').value;
 
       let filtered = allLeads.filter(lead => {
@@ -589,15 +465,13 @@
           lead.name.toLowerCase().includes(searchTerm) ||
           lead.role.toLowerCase().includes(searchTerm) ||
           lead.company.toLowerCase().includes(searchTerm) ||
-          (lead.snippet && lead.snippet.toLowerCase().includes(searchTerm));
+          (lead.location && lead.location.toLowerCase().includes(searchTerm));
 
         const matchesCompany = !companyFilter || lead.company === companyFilter;
-        const matchesConfidence = !confidenceFilter || lead.confidence === confidenceFilter;
 
-        return matchesSearch && matchesCompany && matchesConfidence;
+        return matchesSearch && matchesCompany;
       });
 
-      // Sort
       filtered.sort((a, b) => {
         switch (sortBy) {
           case 'date-desc':
@@ -606,8 +480,6 @@
             return new Date(a.discoveredAt) - new Date(b.discoveredAt);
           case 'name-asc':
             return a.name.localeCompare(b.name);
-          case 'name-desc':
-            return b.name.localeCompare(a.name);
           case 'company-asc':
             return a.company.localeCompare(b.company);
           default:
@@ -618,49 +490,40 @@
       renderLeads(filtered);
     }
 
-    // Load leads from JSON file
     async function loadLeads() {
       try {
         const response = await fetch('leads.json');
 
         if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          throw new Error(`HTTP ${response.status}`);
         }
 
         allLeads = await response.json();
 
         if (!Array.isArray(allLeads)) {
-          throw new Error('Invalid data format: expected an array');
+          throw new Error('Invalid data format');
         }
 
         updateStats(allLeads);
         populateCompanyFilter(allLeads);
         renderLeads(allLeads);
 
-        // Add event listeners for filtering
         document.getElementById('search').addEventListener('input', filterAndSort);
         document.getElementById('company-filter').addEventListener('change', filterAndSort);
-        document.getElementById('confidence-filter').addEventListener('change', filterAndSort);
         document.getElementById('sort-by').addEventListener('change', filterAndSort);
 
       } catch (error) {
         document.getElementById('content').innerHTML = `
           <div class="error">
             <h3>Could not load leads</h3>
-            <p>Make sure leads.json is in the same folder as this HTML file.</p>
+            <p>Make sure leads.json exists in the output folder.</p>
             <code>Error: ${escapeHtml(error.message)}</code>
-            <p style="margin-top: 20px; color: #888;">
-              <strong>Tip:</strong> If you're opening this file directly in a browser,
-              you may need to serve it via a local server due to CORS restrictions:
-              <code style="display: block; margin-top: 10px;">npm run view</code>
-              Then open http://localhost:3000/viewer.html
-            </p>
+            <p style="margin-top: 15px;">Run: <code style="display:inline; padding: 4px 8px;">npm run view</code> then open http://localhost:3000/viewer.html</p>
           </div>
         `;
       }
     }
 
-    // Initialize
     loadLeads();
   </script>
 </body>

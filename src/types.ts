@@ -3,6 +3,7 @@ export interface Lead {
   name: string;
   role: string;
   company: string;
+  location: string; // Extracted from snippet (e.g. "Berlin, Germany")
   linkedinUrl: string;
   snippet: string;
   htmlSnippet: string; // Snippet with <b> highlighted keywords

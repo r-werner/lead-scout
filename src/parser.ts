@@ -32,6 +32,45 @@ function findMatchedTopics(text: string, topics: string[]): string[] {
 }
 
 /**
+ * Extract location from LinkedIn snippet
+ * Common patterns: "Berlin, Germany · ...", "San Francisco Bay Area · ...", "Location: ..."
+ */
+function extractLocation(snippet: string): string {
+  if (!snippet) return '';
+
+  // Pattern 1: Location at start followed by separator (most common)
+  // e.g., "Berlin, Germany · 500+ connections"
+  const startPattern = /^([A-Z][A-Za-z\s,]+(?:Area|Region|County)?)\s*[·•|]/;
+  let match = snippet.match(startPattern);
+  if (match) {
+    return cleanText(match[1]);
+  }
+
+  // Pattern 2: "Location: City, Country" or "Location · City"
+  const locationPattern = /Location[:\s·]+([A-Z][A-Za-z\s,]+?)(?:\s*[·•|]|\s*$)/i;
+  match = snippet.match(locationPattern);
+  if (match) {
+    return cleanText(match[1]);
+  }
+
+  // Pattern 3: Look for common location patterns with country names
+  const countryPattern = /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*,\s*(?:Germany|USA|UK|United States|United Kingdom|France|Netherlands|Switzerland|Austria|Spain|Italy|Canada|Australia|India|Singapore|Ireland|Sweden|Denmark|Norway|Finland|Belgium|Poland|Czech Republic|Israel))\b/;
+  match = snippet.match(countryPattern);
+  if (match) {
+    return cleanText(match[1]);
+  }
+
+  // Pattern 4: "Greater X Area" or "X Metropolitan Area"
+  const areaPattern = /\b((?:Greater\s+)?[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+(?:Area|Metropolitan Area|Region))\b/;
+  match = snippet.match(areaPattern);
+  if (match) {
+    return cleanText(match[1]);
+  }
+
+  return '';
+}
+
+/**
  * Parse a single Google search result into a Lead
  */
 export function parseSearchResult(
@@ -53,6 +92,9 @@ export function parseSearchResult(
   const searchText = `${title} ${snippet || ''}`;
   const matchedTopics = findMatchedTopics(searchText, topics);
 
+  // Extract location from snippet
+  const location = extractLocation(snippet || '');
+
   // Try primary pattern first: "Name - Role - Company | LinkedIn"
   let match = title.match(PRIMARY_PATTERN);
 
@@ -65,6 +107,7 @@ export function parseSearchResult(
       name: cleanText(name),
       role: cleanText(role),
       company: cleanText(company),
+      location,
       linkedinUrl: link,
       snippet: snippet || '',
       htmlSnippet: htmlSnippet || snippet || '',
@@ -86,6 +129,7 @@ export function parseSearchResult(
       name: cleanText(name),
       role: cleanText(role),
       company,
+      location,
       linkedinUrl: link,
       snippet: snippet || '',
       htmlSnippet: htmlSnippet || snippet || '',
