@@ -1,13 +1,12 @@
 import 'dotenv/config';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { search, buildQuery, delay } from './google-search.js';
-import { scrapeWithRetry } from './google-scraper.js';
 import { parseSearchResults, ParseOptions } from './parser.js';
-import { Lead, CompaniesConfig, SearchConfig, QueryBatch, GoogleSearchResponse } from './types.js';
+import { Lead, CompaniesConfig, SearchConfig, QueryBatch } from './types.js';
 
 // Configuration
-const DELAY_BETWEEN_QUERIES_MS = 4000; // 4 seconds between queries (be nice to Google)
-const MAX_QUERIES_PER_RUN = 20; // Limit per execution
+const DELAY_BETWEEN_QUERIES_MS = 2500; // 2.5 seconds between API calls
+const MAX_QUERIES_PER_RUN = 20; // Limit per execution (100/day max)
 
 // File paths
 const COMPANIES_FILE = './data/target-companies.json';
@@ -15,53 +14,26 @@ const KEYWORDS_FILE = './data/search-keywords.json';
 const OUTPUT_FILE = './output/leads.json';
 const EXECUTED_QUERIES_FILE = './output/executed-queries.json';
 
-// Search provider type
-type SearchProvider = 'scraper' | 'google-cse';
-
-async function executeSearch(
-  query: string,
-  provider: SearchProvider,
-  apiKey?: string,
-  cseId?: string
-): Promise<GoogleSearchResponse> {
-  if (provider === 'scraper') {
-    return scrapeWithRetry(query);
-  } else {
-    if (!apiKey || !cseId) {
-      throw new Error('Google CSE requires GOOGLE_API_KEY and GOOGLE_CSE_ID');
-    }
-    return search(query, apiKey, cseId);
-  }
-}
-
 async function main() {
   console.log('='.repeat(50));
   console.log('Lead Scout - LinkedIn X-Ray Search');
   console.log('='.repeat(50));
   console.log('');
 
-  // Determine search provider
-  const provider: SearchProvider = (process.env.SEARCH_PROVIDER as SearchProvider) || 'google-cse';
+  // Check environment variables
   const apiKey = process.env.GOOGLE_API_KEY;
   const cseId = process.env.GOOGLE_CSE_ID;
 
-  console.log(`Search provider: ${provider}`);
-
-  if (provider === 'google-cse') {
-    if (!apiKey || !cseId) {
-      console.error('ERROR: Missing GOOGLE_API_KEY or GOOGLE_CSE_ID');
-      console.error('');
-      console.error('Please create a .env file with:');
-      console.error('  GOOGLE_API_KEY=your_api_key_here');
-      console.error('  GOOGLE_CSE_ID=your_search_engine_id_here');
-      console.error('');
-      console.error('Or use SEARCH_PROVIDER=scraper to scrape Google directly.');
-      process.exit(1);
-    }
-  } else {
-    console.log('Using Puppeteer to scrape Google (same results as browser)');
+  if (!apiKey || !cseId) {
+    console.error('ERROR: Missing GOOGLE_API_KEY or GOOGLE_CSE_ID');
+    console.error('');
+    console.error('Please create a .env file with:');
+    console.error('  GOOGLE_API_KEY=your_api_key_here');
+    console.error('  GOOGLE_CSE_ID=your_search_engine_id_here');
+    console.error('');
+    console.error('See .env.example for reference.');
+    process.exit(1);
   }
-  console.log('');
 
   // Ensure output directory exists
   if (!existsSync('./output')) {
@@ -157,7 +129,7 @@ async function main() {
     console.log(`${progress} Searching: ${company}...`);
 
     try {
-      const response = await executeSearch(query, provider, apiKey, cseId);
+      const response = await search(query, apiKey, cseId);
       const items = response.items || [];
       totalResultsFound += items.length;
 
@@ -193,16 +165,11 @@ async function main() {
     } catch (error) {
       console.error(`  - ERROR: ${error}`);
 
-      // Check if it's a quota error (for CSE) or block (for scraper)
+      // Check if it's a quota error
       const errorMsg = String(error);
       if (errorMsg.includes('429') || errorMsg.includes('quota')) {
         console.error('');
         console.error('Daily quota exceeded. Try again tomorrow.');
-        break;
-      }
-      if (errorMsg.includes('CAPTCHA') || errorMsg.includes('blocked')) {
-        console.error('');
-        console.error('Google may have blocked scraping. Try again later or use a VPN.');
         break;
       }
     }
