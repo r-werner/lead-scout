@@ -515,6 +515,13 @@
       const companies = [...new Set(leads.map(l => l.company))].sort();
       const select = document.getElementById('company-filter');
 
+      // Clear existing options except the first "All Companies"
+      while (select.options.length > 1) {
+        select.remove(1);
+      }
+
+      console.log(`Populating filter with ${companies.length} companies:`, companies);
+
       companies.forEach(company => {
         const option = document.createElement('option');
         option.value = company;
@@ -568,6 +575,7 @@
         }
 
         allLeads = await response.json();
+        console.log(`Loaded ${allLeads.length} leads from leads.json`);
 
         if (!Array.isArray(allLeads)) {
           throw new Error('Invalid data format');
