@@ -5,6 +5,8 @@ export interface Lead {
   company: string;
   linkedinUrl: string;
   snippet: string;
+  htmlSnippet: string; // Snippet with <b> highlighted keywords
+  imageUrl: string | null; // Profile picture URL from Google
   confidence: 'high' | 'medium' | 'low';
   queryUsed: string;
   discoveredAt: string; // ISO date string
@@ -26,9 +28,22 @@ export interface GoogleSearchResponse {
 
 export interface GoogleSearchItem {
   title: string;
+  htmlTitle?: string; // Title with <b> highlighted keywords
   link: string;
   snippet: string;
+  htmlSnippet?: string; // Snippet with <b> highlighted keywords
   displayLink?: string;
+  pagemap?: {
+    cse_thumbnail?: Array<{
+      src: string;
+      width: string;
+      height: string;
+    }>;
+    cse_image?: Array<{
+      src: string;
+    }>;
+    metatags?: Array<Record<string, string>>;
+  };
 }
 
 // Config file types

@@ -7,18 +7,38 @@ const PRIMARY_PATTERN = /^(.+?)\s*-\s*(.+?)\s*-\s*(.+?)\s*\|\s*LinkedIn$/i;
 const FALLBACK_PATTERN = /^(.+?)\s*-\s*(.+?)\s*\|\s*LinkedIn$/i;
 
 /**
+ * Extract profile image URL from Google's pagemap data
+ */
+function extractImageUrl(item: GoogleSearchItem): string | null {
+  // Try cse_thumbnail first (usually has the profile picture)
+  if (item.pagemap?.cse_thumbnail?.[0]?.src) {
+    return item.pagemap.cse_thumbnail[0].src;
+  }
+
+  // Fall back to cse_image
+  if (item.pagemap?.cse_image?.[0]?.src) {
+    return item.pagemap.cse_image[0].src;
+  }
+
+  return null;
+}
+
+/**
  * Parse a single Google search result into a Lead
  */
 export function parseSearchResult(
   item: GoogleSearchItem,
   queryUsed: string
 ): Lead | null {
-  const { title, link, snippet } = item;
+  const { title, link, snippet, htmlSnippet } = item;
 
   // Skip if not a LinkedIn profile URL
   if (!link.includes('linkedin.com/in/')) {
     return null;
   }
+
+  // Extract image URL from pagemap
+  const imageUrl = extractImageUrl(item);
 
   // Try primary pattern first: "Name - Role - Company | LinkedIn"
   let match = title.match(PRIMARY_PATTERN);
@@ -34,6 +54,8 @@ export function parseSearchResult(
       company: cleanText(company),
       linkedinUrl: link,
       snippet: snippet || '',
+      htmlSnippet: htmlSnippet || snippet || '',
+      imageUrl,
       confidence: detectTruncation(title) ? 'low' : 'high',
       queryUsed,
       discoveredAt: new Date().toISOString(),
@@ -52,6 +74,8 @@ export function parseSearchResult(
       company,
       linkedinUrl: link,
       snippet: snippet || '',
+      htmlSnippet: htmlSnippet || snippet || '',
+      imageUrl,
       confidence: 'medium',
       queryUsed,
       discoveredAt: new Date().toISOString(),
