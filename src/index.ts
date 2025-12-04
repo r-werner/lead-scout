@@ -1,12 +1,13 @@
 import 'dotenv/config';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { search, buildQuery, delay } from './google-search.js';
+import { searchWithPagination, buildQuery, delay } from './google-search.js';
 import { parseSearchResults, ParseOptions } from './parser.js';
 import { Lead, CompaniesConfig, SearchConfig, QueryBatch } from './types.js';
 
 // Configuration
-const DELAY_BETWEEN_QUERIES_MS = 2500; // 2.5 seconds between API calls
-const MAX_QUERIES_PER_RUN = 20; // Limit per execution (100/day max)
+const DELAY_BETWEEN_QUERIES_MS = 2500; // 2.5 seconds between queries
+const MAX_QUERIES_PER_RUN = 20; // Max queries per execution
+const MAX_PAGES_PER_QUERY = 5; // Max pages per query (5 pages = 50 results, uses 5 API calls)
 
 // File paths
 const COMPANIES_FILE = './data/target-companies.json';
@@ -122,6 +123,7 @@ async function main() {
   const newLeads: Lead[] = [];
   let queriesExecuted = 0;
   let totalResultsFound = 0;
+  let totalApiCalls = 0;
 
   for (const { query, company } of queriesToRun) {
     queriesExecuted++;
@@ -129,11 +131,16 @@ async function main() {
     console.log(`${progress} Searching: ${company}...`);
 
     try {
-      const response = await search(query, apiKey, cseId);
-      const items = response.items || [];
+      const { items, apiCallsUsed } = await searchWithPagination(
+        query,
+        apiKey,
+        cseId,
+        MAX_PAGES_PER_QUERY
+      );
       totalResultsFound += items.length;
+      totalApiCalls += apiCallsUsed;
 
-      console.log(`  - Got ${items.length} results from Google`);
+      console.log(`  - Got ${items.length} results from Google (${apiCallsUsed} API calls)`);
 
       // Parse all results (no filtering - all data is kept)
       const parseOptions: ParseOptions = {
@@ -191,6 +198,7 @@ async function main() {
   console.log('SUMMARY');
   console.log('='.repeat(50));
   console.log(`Queries executed:    ${queriesExecuted}`);
+  console.log(`API calls used:      ${totalApiCalls} (of 100 daily limit)`);
   console.log(`Google results:      ${totalResultsFound}`);
   console.log(`New leads found:     ${newLeads.length}`);
   console.log(`Total leads in DB:   ${allLeads.length}`);
