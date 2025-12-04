@@ -139,6 +139,7 @@ async function main() {
       const parseOptions: ParseOptions = {
         queryUsed: query,
         topics: allTopics,
+        searchedCompany: company,
       };
       const leads = parseSearchResults(items, parseOptions);
       let newCount = 0;

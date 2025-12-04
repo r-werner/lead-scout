@@ -191,6 +191,13 @@
       margin-bottom: 10px;
     }
 
+    .lead-searched-company {
+      color: #555;
+      font-size: 0.8rem;
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
     .lead-snippet {
       margin-top: 10px;
       padding: 10px 12px;
@@ -406,8 +413,11 @@
       <div class="search-box">
         <input type="text" id="search" placeholder="Search name, role, company...">
       </div>
+      <select id="searched-company-filter">
+        <option value="">All Searched Companies</option>
+      </select>
       <select id="company-filter">
-        <option value="">All Companies</option>
+        <option value="">All Extracted Companies</option>
       </select>
       <select id="sort-by">
         <option value="date-desc">Newest</option>
@@ -494,6 +504,11 @@
         ? `<div class="lead-location">${escapeHtml(lead.location)}</div>`
         : '';
 
+      // Show searchedCompany if it differs from the extracted company
+      const searchedCompanyHtml = lead.searchedCompany && lead.searchedCompany !== lead.company
+        ? `<div class="lead-searched-company">Searched: ${escapeHtml(lead.searchedCompany)}</div>`
+        : '';
+
       const matchedTopics = lead.matchedTopics || [];
 
       const snippetHtml = lead.snippet
@@ -517,6 +532,7 @@
             <div class="lead-name"><a href="${escapeHtml(lead.linkedinUrl)}" target="_blank" rel="noopener">${escapeHtml(lead.name)}</a>${noMatchBadge}</div>
             <div class="lead-role">${escapeHtml(lead.role)}</div>
             <div class="lead-company">${escapeHtml(lead.company)}</div>
+            ${searchedCompanyHtml}
             ${locationHtml}
             ${snippetHtml}
             ${topicsHtml}
@@ -563,16 +579,26 @@
     }
 
     function populateCompanyFilter(leads) {
+      // Populate searched company filter
+      const searchedCompanies = [...new Set(leads.map(l => l.searchedCompany).filter(Boolean))].sort();
+      const searchedSelect = document.getElementById('searched-company-filter');
+      while (searchedSelect.options.length > 1) {
+        searchedSelect.remove(1);
+      }
+      searchedCompanies.forEach(company => {
+        const option = document.createElement('option');
+        option.value = company;
+        option.textContent = company;
+        searchedSelect.appendChild(option);
+      });
+
+      // Populate extracted company filter
       const companies = [...new Set(leads.map(l => l.company))].sort();
       const select = document.getElementById('company-filter');
-
-      // Clear existing options except the first "All Companies"
       while (select.options.length > 1) {
         select.remove(1);
       }
-
       console.log(`Populating filter with ${companies.length} companies:`, companies);
-
       companies.forEach(company => {
         const option = document.createElement('option');
         option.value = company;
@@ -583,6 +609,7 @@
 
     function filterAndSort() {
       const searchTerm = document.getElementById('search').value.toLowerCase();
+      const searchedCompanyFilter = document.getElementById('searched-company-filter').value;
       const companyFilter = document.getElementById('company-filter').value;
       const sortBy = document.getElementById('sort-by').value;
       const topicFilterEnabled = document.getElementById('topic-filter').checked;
@@ -592,14 +619,16 @@
           lead.name.toLowerCase().includes(searchTerm) ||
           lead.role.toLowerCase().includes(searchTerm) ||
           lead.company.toLowerCase().includes(searchTerm) ||
+          (lead.searchedCompany && lead.searchedCompany.toLowerCase().includes(searchTerm)) ||
           (lead.location && lead.location.toLowerCase().includes(searchTerm));
 
+        const matchesSearchedCompany = !searchedCompanyFilter || lead.searchedCompany === searchedCompanyFilter;
         const matchesCompany = !companyFilter || lead.company === companyFilter;
 
         const hasTopicMatch = lead.hasTopicMatch !== false && (lead.matchedTopics?.length > 0);
         const matchesTopic = !topicFilterEnabled || hasTopicMatch;
 
-        return matchesSearch && matchesCompany && matchesTopic;
+        return matchesSearch && matchesSearchedCompany && matchesCompany && matchesTopic;
       });
 
       filtered.sort((a, b) => {
@@ -640,6 +669,7 @@
         populateCompanyFilter(allLeads);
 
         document.getElementById('search').addEventListener('input', filterAndSort);
+        document.getElementById('searched-company-filter').addEventListener('change', filterAndSort);
         document.getElementById('company-filter').addEventListener('change', filterAndSort);
         document.getElementById('sort-by').addEventListener('change', filterAndSort);
         document.getElementById('topic-filter').addEventListener('change', filterAndSort);

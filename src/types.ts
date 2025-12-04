@@ -2,7 +2,8 @@
 export interface Lead {
   name: string;
   role: string;
-  company: string;
+  company: string; // Extracted from LinkedIn title (may differ from searchedCompany)
+  searchedCompany: string; // Company name used in the search query
   location: string; // Extracted from snippet (e.g. "Berlin, Germany")
   linkedinUrl: string;
   snippet: string;

@@ -90,7 +90,8 @@ function extractLocation(snippet: string): string {
 export function parseSearchResult(
   item: GoogleSearchItem,
   queryUsed: string,
-  topics: string[] = []
+  topics: string[] = [],
+  searchedCompany: string = ''
 ): Lead | null {
   const { title, link, snippet, htmlSnippet } = item;
 
@@ -122,6 +123,7 @@ export function parseSearchResult(
       name: cleanText(name),
       role: cleanText(role),
       company: cleanText(company),
+      searchedCompany,
       location,
       linkedinUrl: link,
       snippet: snippet || '',
@@ -145,6 +147,7 @@ export function parseSearchResult(
       name: cleanText(name),
       role: cleanText(role),
       company,
+      searchedCompany,
       location,
       linkedinUrl: link,
       snippet: snippet || '',
@@ -168,6 +171,7 @@ export function parseSearchResult(
 export interface ParseOptions {
   queryUsed: string;
   topics?: string[]; // Topic keywords for matching
+  searchedCompany: string; // Company name used in the search query
 }
 
 /**
@@ -178,11 +182,11 @@ export function parseSearchResults(
   items: GoogleSearchItem[],
   options: ParseOptions
 ): Lead[] {
-  const { queryUsed, topics = [] } = options;
+  const { queryUsed, topics = [], searchedCompany } = options;
   const leads: Lead[] = [];
 
   for (const item of items) {
-    const lead = parseSearchResult(item, queryUsed, topics);
+    const lead = parseSearchResult(item, queryUsed, topics, searchedCompany);
     if (lead) {
       leads.push(lead);
     }
