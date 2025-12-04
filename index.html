@@ -198,6 +198,36 @@
       margin-bottom: 6px;
     }
 
+    .lead-company-meta {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .meta-tag {
+      padding: 2px 6px;
+      background: #2a2a2a;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      color: #888;
+    }
+
+    .meta-tag.index {
+      background: #2d3748;
+      color: #90cdf4;
+    }
+
+    .meta-tag.country {
+      background: #2d3a2d;
+      color: #9ae6b4;
+    }
+
+    .meta-tag.sector {
+      background: #3d2d3d;
+      color: #d6bcfa;
+    }
+
     .lead-snippet {
       margin-top: 10px;
       padding: 10px 12px;
@@ -413,11 +443,17 @@
       <div class="search-box">
         <input type="text" id="search" placeholder="Search name, role, company...">
       </div>
-      <select id="searched-company-filter">
-        <option value="">All Searched Companies</option>
+      <select id="index-filter">
+        <option value="">All Indices</option>
       </select>
-      <select id="company-filter">
-        <option value="">All Extracted Companies</option>
+      <select id="country-filter">
+        <option value="">All Countries</option>
+      </select>
+      <select id="sector-filter">
+        <option value="">All Sectors</option>
+      </select>
+      <select id="searched-company-filter">
+        <option value="">All Companies</option>
       </select>
       <select id="sort-by">
         <option value="date-desc">Newest</option>
@@ -509,6 +545,16 @@
         ? `<div class="lead-searched-company">Searched: ${escapeHtml(lead.searchedCompany)}</div>`
         : '';
 
+      // Show company metadata (index, country, sector)
+      const meta = getCompanyMeta(lead);
+      const companyMetaHtml = meta ? `
+        <div class="lead-company-meta">
+          <span class="meta-tag index">${escapeHtml(meta.index)}</span>
+          <span class="meta-tag country">${escapeHtml(meta.country)}</span>
+          <span class="meta-tag sector">${escapeHtml(meta.sector)}</span>
+        </div>
+      ` : '';
+
       const matchedTopics = lead.matchedTopics || [];
 
       const snippetHtml = lead.snippet
@@ -532,6 +578,7 @@
             <div class="lead-name"><a href="${escapeHtml(lead.linkedinUrl)}" target="_blank" rel="noopener">${escapeHtml(lead.name)}</a>${noMatchBadge}</div>
             <div class="lead-role">${escapeHtml(lead.role)}</div>
             <div class="lead-company">${escapeHtml(lead.company)}</div>
+            ${companyMetaHtml}
             ${searchedCompanyHtml}
             ${locationHtml}
             ${snippetHtml}
@@ -550,6 +597,13 @@
     }
 
     let allLeads = [];
+    let companyLookup = {}; // Map company name -> {index, country, sector}
+
+    // Get company metadata by searchedCompany name
+    function getCompanyMeta(lead) {
+      // Try searchedCompany first, then extracted company
+      return companyLookup[lead.searchedCompany] || companyLookup[lead.company] || null;
+    }
 
     function renderLeads(leads) {
       const content = document.getElementById('content');
@@ -578,39 +632,43 @@
       document.getElementById('companies-count').textContent = new Set(leads.map(l => l.company)).size;
     }
 
-    function populateCompanyFilter(leads) {
+    function populateFilters(leads) {
+      // Helper to populate a select element
+      function populateSelect(selectId, values) {
+        const select = document.getElementById(selectId);
+        while (select.options.length > 1) {
+          select.remove(1);
+        }
+        values.forEach(value => {
+          const option = document.createElement('option');
+          option.value = value;
+          option.textContent = value;
+          select.appendChild(option);
+        });
+      }
+
       // Populate searched company filter
       const searchedCompanies = [...new Set(leads.map(l => l.searchedCompany).filter(Boolean))].sort();
-      const searchedSelect = document.getElementById('searched-company-filter');
-      while (searchedSelect.options.length > 1) {
-        searchedSelect.remove(1);
-      }
-      searchedCompanies.forEach(company => {
-        const option = document.createElement('option');
-        option.value = company;
-        option.textContent = company;
-        searchedSelect.appendChild(option);
-      });
+      populateSelect('searched-company-filter', searchedCompanies);
 
-      // Populate extracted company filter
-      const companies = [...new Set(leads.map(l => l.company))].sort();
-      const select = document.getElementById('company-filter');
-      while (select.options.length > 1) {
-        select.remove(1);
-      }
-      console.log(`Populating filter with ${companies.length} companies:`, companies);
-      companies.forEach(company => {
-        const option = document.createElement('option');
-        option.value = company;
-        option.textContent = company;
-        select.appendChild(option);
-      });
+      // Populate index, country, sector filters from company lookup
+      const indices = [...new Set(Object.values(companyLookup).map(c => c.index))].sort();
+      const countries = [...new Set(Object.values(companyLookup).map(c => c.country))].sort();
+      const sectors = [...new Set(Object.values(companyLookup).map(c => c.sector))].sort();
+
+      populateSelect('index-filter', indices);
+      populateSelect('country-filter', countries);
+      populateSelect('sector-filter', sectors);
+
+      console.log(`Filters populated: ${indices.length} indices, ${countries.length} countries, ${sectors.length} sectors`);
     }
 
     function filterAndSort() {
       const searchTerm = document.getElementById('search').value.toLowerCase();
+      const indexFilter = document.getElementById('index-filter').value;
+      const countryFilter = document.getElementById('country-filter').value;
+      const sectorFilter = document.getElementById('sector-filter').value;
       const searchedCompanyFilter = document.getElementById('searched-company-filter').value;
-      const companyFilter = document.getElementById('company-filter').value;
       const sortBy = document.getElementById('sort-by').value;
       const topicFilterEnabled = document.getElementById('topic-filter').checked;
 
@@ -623,12 +681,17 @@
           (lead.location && lead.location.toLowerCase().includes(searchTerm));
 
         const matchesSearchedCompany = !searchedCompanyFilter || lead.searchedCompany === searchedCompanyFilter;
-        const matchesCompany = !companyFilter || lead.company === companyFilter;
+
+        // Check index, country, sector against company metadata
+        const meta = getCompanyMeta(lead);
+        const matchesIndex = !indexFilter || (meta && meta.index === indexFilter);
+        const matchesCountry = !countryFilter || (meta && meta.country === countryFilter);
+        const matchesSector = !sectorFilter || (meta && meta.sector === sectorFilter);
 
         const hasTopicMatch = lead.hasTopicMatch !== false && (lead.matchedTopics?.length > 0);
         const matchesTopic = !topicFilterEnabled || hasTopicMatch;
 
-        return matchesSearch && matchesSearchedCompany && matchesCompany && matchesTopic;
+        return matchesSearch && matchesSearchedCompany && matchesIndex && matchesCountry && matchesSector && matchesTopic;
       });
 
       filtered.sort((a, b) => {
@@ -651,26 +714,47 @@
 
     async function loadLeads() {
       try {
-        // Add cache-busting to always get fresh data
-        const response = await fetch(`output/leads.json?t=${Date.now()}`);
+        // Load both leads and company data in parallel
+        const [leadsResponse, companiesResponse] = await Promise.all([
+          fetch(`output/leads.json?t=${Date.now()}`),
+          fetch(`data/target-companies.json?t=${Date.now()}`)
+        ]);
 
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+        if (!leadsResponse.ok) {
+          throw new Error(`Leads: HTTP ${leadsResponse.status}`);
         }
 
-        allLeads = await response.json();
+        allLeads = await leadsResponse.json();
         console.log(`Loaded ${allLeads.length} leads from leads.json`);
 
         if (!Array.isArray(allLeads)) {
-          throw new Error('Invalid data format');
+          throw new Error('Invalid leads data format');
+        }
+
+        // Load company metadata if available
+        if (companiesResponse.ok) {
+          const companiesData = await companiesResponse.json();
+          // Create lookup map by company name
+          companiesData.companies.forEach(company => {
+            companyLookup[company.name] = {
+              index: company.index,
+              country: company.country,
+              sector: company.sector
+            };
+          });
+          console.log(`Loaded ${Object.keys(companyLookup).length} companies for metadata lookup`);
+        } else {
+          console.warn('Could not load target-companies.json, metadata filters disabled');
         }
 
         updateStats(allLeads);
-        populateCompanyFilter(allLeads);
+        populateFilters(allLeads);
 
         document.getElementById('search').addEventListener('input', filterAndSort);
+        document.getElementById('index-filter').addEventListener('change', filterAndSort);
+        document.getElementById('country-filter').addEventListener('change', filterAndSort);
+        document.getElementById('sector-filter').addEventListener('change', filterAndSort);
         document.getElementById('searched-company-filter').addEventListener('change', filterAndSort);
-        document.getElementById('company-filter').addEventListener('change', filterAndSort);
         document.getElementById('sort-by').addEventListener('change', filterAndSort);
         document.getElementById('topic-filter').addEventListener('change', filterAndSort);
 
