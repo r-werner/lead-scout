@@ -135,16 +135,14 @@ async function main() {
 
       console.log(`  - Got ${items.length} results from Google`);
 
-      // Parse with post-filtering: require at least one topic keyword match
+      // Parse all results (no filtering - all data is kept)
       const parseOptions: ParseOptions = {
         queryUsed: query,
         topics: allTopics,
-        requireTopicMatch: true, // Only keep leads that mention Agentic AI topics
       };
       const leads = parseSearchResults(items, parseOptions);
       let newCount = 0;
       let duplicateCount = 0;
-      let filteredCount = items.length - leads.length;
 
       for (const lead of leads) {
         if (!existingUrls.has(lead.linkedinUrl)) {
@@ -156,9 +154,7 @@ async function main() {
         }
       }
 
-      console.log(
-        `  - Parsed ${leads.length} leads (${filteredCount} filtered out): ${newCount} new, ${duplicateCount} duplicates`
-      );
+      console.log(`  - Parsed ${leads.length} leads: ${newCount} new, ${duplicateCount} duplicates`);
 
       // Mark query as executed (even if no results)
       executedQueries.add(query);

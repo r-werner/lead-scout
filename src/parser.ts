@@ -129,6 +129,7 @@ export function parseSearchResult(
       imageUrl,
       confidence: detectTruncation(title) ? 'low' : 'high',
       matchedTopics,
+      hasTopicMatch: matchedTopics.length > 0,
       queryUsed,
       discoveredAt: new Date().toISOString(),
     };
@@ -151,6 +152,7 @@ export function parseSearchResult(
       imageUrl,
       confidence: 'medium',
       matchedTopics,
+      hasTopicMatch: matchedTopics.length > 0,
       queryUsed,
       discoveredAt: new Date().toISOString(),
     };
@@ -165,37 +167,32 @@ export function parseSearchResult(
  */
 export interface ParseOptions {
   queryUsed: string;
-  topics?: string[]; // Topic keywords for filtering
-  requireTopicMatch?: boolean; // If true, only return leads with at least one topic match
+  topics?: string[]; // Topic keywords for matching
 }
 
 /**
  * Parse all results from a Google search response
- * With optional post-filtering to require topic keyword matches
+ * All results are kept, with hasTopicMatch flag indicating keyword matches
  */
 export function parseSearchResults(
   items: GoogleSearchItem[],
   options: ParseOptions
 ): Lead[] {
-  const { queryUsed, topics = [], requireTopicMatch = false } = options;
+  const { queryUsed, topics = [] } = options;
   const leads: Lead[] = [];
-  const filtered: string[] = [];
 
   for (const item of items) {
     const lead = parseSearchResult(item, queryUsed, topics);
     if (lead) {
-      // If filtering is enabled, only include leads that match at least one topic
-      if (requireTopicMatch && lead.matchedTopics.length === 0) {
-        filtered.push(`${lead.name} @ ${lead.company}`);
-        continue; // Skip - no topic keywords found
-      }
       leads.push(lead);
     }
   }
 
-  // Log filtered results for debugging
-  if (filtered.length > 0) {
-    console.log(`    Filtered out (no topic match): ${filtered.join(', ')}`);
+  // Log stats about topic matches
+  const withMatch = leads.filter(l => l.hasTopicMatch).length;
+  const withoutMatch = leads.length - withMatch;
+  if (withoutMatch > 0) {
+    console.log(`    Topic matches: ${withMatch} yes, ${withoutMatch} no`);
   }
 
   return leads;

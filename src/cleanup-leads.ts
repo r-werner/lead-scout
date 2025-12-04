@@ -2,16 +2,24 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { Lead, SearchConfig } from './types.js';
 
 /**
- * Cleanup script: Remove leads that don't have topic keyword matches
- * Run this after updating filtering logic to clean up stale data
+ * Cleanup script: Re-calculate hasTopicMatch flag for all leads
+ * Run this to update existing leads with the new flag
  */
 
 const LEADS_FILE = './output/leads.json';
 const KEYWORDS_FILE = './data/search-keywords.json';
 
+function escapeRegex(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function findMatchedTopics(text: string, topics: string[]): string[] {
   const lowerText = text.toLowerCase();
-  return topics.filter((topic) => lowerText.includes(topic.toLowerCase()));
+  return topics.filter((topic) => {
+    const lowerTopic = topic.toLowerCase();
+    const regex = new RegExp(`\\b${escapeRegex(lowerTopic)}\\b`, 'i');
+    return regex.test(lowerText);
+  });
 }
 
 function main() {
@@ -37,50 +45,33 @@ function main() {
   console.log(`Topics to match: ${topics.join(', ')}`);
   console.log('');
 
-  // Re-validate each lead
-  const validLeads: Lead[] = [];
-  const removedLeads: Lead[] = [];
+  // Re-validate each lead and update flags
+  let withMatch = 0;
+  let withoutMatch = 0;
 
   for (const lead of leads) {
-    // Re-check topic matches in role + snippet (role often contains title keywords)
+    // Re-check topic matches in role + snippet
     const searchText = `${lead.role} ${lead.snippet}`;
     const matchedTopics = findMatchedTopics(searchText, topics);
 
-    if (matchedTopics.length > 0) {
-      // Update matchedTopics to ensure it's accurate
-      lead.matchedTopics = matchedTopics;
-      validLeads.push(lead);
+    // Update the lead
+    lead.matchedTopics = matchedTopics;
+    lead.hasTopicMatch = matchedTopics.length > 0;
+
+    if (lead.hasTopicMatch) {
+      withMatch++;
     } else {
-      removedLeads.push(lead);
+      withoutMatch++;
     }
   }
 
-  console.log(`Valid leads (with topic match): ${validLeads.length}`);
-  console.log(`Removed leads (no topic match): ${removedLeads.length}`);
+  console.log(`Leads with topic match: ${withMatch}`);
+  console.log(`Leads without topic match: ${withoutMatch}`);
   console.log('');
 
-  if (removedLeads.length > 0) {
-    console.log('Removed leads:');
-    for (const lead of removedLeads.slice(0, 10)) {
-      console.log(`  - ${lead.name} @ ${lead.company}`);
-      console.log(`    Role: ${lead.role}`);
-    }
-    if (removedLeads.length > 10) {
-      console.log(`  ... and ${removedLeads.length - 10} more`);
-    }
-    console.log('');
-  }
-
-  // Save cleaned data
-  writeFileSync(LEADS_FILE, JSON.stringify(validLeads, null, 2));
-  console.log(`Saved ${validLeads.length} leads to ${LEADS_FILE}`);
-
-  // Also save removed leads for review
-  if (removedLeads.length > 0) {
-    const removedFile = './output/removed-leads.json';
-    writeFileSync(removedFile, JSON.stringify(removedLeads, null, 2));
-    console.log(`Removed leads saved to ${removedFile} for review`);
-  }
+  // Save updated data
+  writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2));
+  console.log(`Updated ${leads.length} leads in ${LEADS_FILE}`);
 }
 
 main();

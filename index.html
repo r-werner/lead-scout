@@ -230,6 +230,45 @@
       font-weight: 500;
     }
 
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #888;
+      font-size: 0.9rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-label:hover {
+      border-color: #444;
+    }
+
+    .toggle-label input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #9ece6a;
+    }
+
+    .lead-card.no-topic-match {
+      opacity: 0.6;
+      border-left: 3px solid #555;
+    }
+
+    .no-match-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      background: #3a3a3a;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      color: #888;
+      margin-left: 8px;
+    }
+
     .lead-actions {
       display: flex;
       flex-direction: column;
@@ -359,8 +398,8 @@
 
     <div class="stats" id="stats">
       <div class="stat"><strong id="total-leads">-</strong> leads</div>
+      <div class="stat"><strong id="with-topic-match">-</strong> with topic match</div>
       <div class="stat"><strong id="companies-count">-</strong> companies</div>
-      <div class="stat"><strong id="with-location">-</strong> with location</div>
     </div>
 
     <div class="controls">
@@ -376,6 +415,10 @@
         <option value="name-asc">Name A-Z</option>
         <option value="company-asc">Company A-Z</option>
       </select>
+      <label class="toggle-label">
+        <input type="checkbox" id="topic-filter" checked>
+        <span>Topic match only</span>
+      </label>
     </div>
 
     <div id="content">
@@ -441,6 +484,7 @@
 
     function createLeadCard(lead) {
       const initials = getInitials(lead.name);
+      const hasTopicMatch = lead.hasTopicMatch !== false && (lead.matchedTopics?.length > 0);
 
       const avatarContent = lead.imageUrl
         ? `<img src="${escapeHtml(lead.imageUrl)}" alt="" onerror="this.parentElement.innerHTML='${initials}'">`
@@ -460,11 +504,17 @@
         ? `<div class="lead-topics">${matchedTopics.map(t => `<span class="topic-tag">${escapeHtml(t)}</span>`).join('')}</div>`
         : '';
 
+      const noMatchBadge = !hasTopicMatch
+        ? '<span class="no-match-badge">No topic match</span>'
+        : '';
+
+      const cardClass = hasTopicMatch ? 'lead-card' : 'lead-card no-topic-match';
+
       return `
-        <div class="lead-card">
+        <div class="${cardClass}">
           <div class="avatar">${avatarContent}</div>
           <div class="lead-main">
-            <div class="lead-name"><a href="${escapeHtml(lead.linkedinUrl)}" target="_blank" rel="noopener">${escapeHtml(lead.name)}</a></div>
+            <div class="lead-name"><a href="${escapeHtml(lead.linkedinUrl)}" target="_blank" rel="noopener">${escapeHtml(lead.name)}</a>${noMatchBadge}</div>
             <div class="lead-role">${escapeHtml(lead.role)}</div>
             <div class="lead-company">${escapeHtml(lead.company)}</div>
             ${locationHtml}
@@ -507,8 +557,9 @@
 
     function updateStats(leads) {
       document.getElementById('total-leads').textContent = leads.length;
+      const withTopicMatch = leads.filter(l => l.hasTopicMatch !== false && l.matchedTopics?.length > 0).length;
+      document.getElementById('with-topic-match').textContent = withTopicMatch;
       document.getElementById('companies-count').textContent = new Set(leads.map(l => l.company)).size;
-      document.getElementById('with-location').textContent = leads.filter(l => l.location).length;
     }
 
     function populateCompanyFilter(leads) {
@@ -534,6 +585,7 @@
       const searchTerm = document.getElementById('search').value.toLowerCase();
       const companyFilter = document.getElementById('company-filter').value;
       const sortBy = document.getElementById('sort-by').value;
+      const topicFilterEnabled = document.getElementById('topic-filter').checked;
 
       let filtered = allLeads.filter(lead => {
         const matchesSearch = !searchTerm ||
@@ -544,7 +596,10 @@
 
         const matchesCompany = !companyFilter || lead.company === companyFilter;
 
-        return matchesSearch && matchesCompany;
+        const hasTopicMatch = lead.hasTopicMatch !== false && (lead.matchedTopics?.length > 0);
+        const matchesTopic = !topicFilterEnabled || hasTopicMatch;
+
+        return matchesSearch && matchesCompany && matchesTopic;
       });
 
       filtered.sort((a, b) => {
@@ -583,11 +638,14 @@
 
         updateStats(allLeads);
         populateCompanyFilter(allLeads);
-        renderLeads(allLeads);
 
         document.getElementById('search').addEventListener('input', filterAndSort);
         document.getElementById('company-filter').addEventListener('change', filterAndSort);
         document.getElementById('sort-by').addEventListener('change', filterAndSort);
+        document.getElementById('topic-filter').addEventListener('change', filterAndSort);
+
+        // Apply initial filter and render (checkbox is checked by default)
+        filterAndSort();
 
       } catch (error) {
         document.getElementById('content').innerHTML = `
